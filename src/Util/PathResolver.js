@@ -1,6 +1,6 @@
-import path from 'path';
-import assert from 'assert';
-import os from 'os';
+import path from "path";
+import assert from "assert";
+import os from "os";
 
 /**
  * file path resolver.
@@ -94,8 +94,8 @@ export default class PathResolver {
    * @private
    */
   _slash(filePath) {
-    if (os.platform() === 'win32') {
-      filePath = filePath.replace(/\\/g, '/');
+    if (os.platform() === "win32") {
+      filePath = filePath.replace(/\\/g, "/");
     }
 
     return filePath;

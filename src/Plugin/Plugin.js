@@ -1,4 +1,4 @@
-import path from 'path';
+import path from "path";
 
 /**
  * Plugin system for your plugin.
@@ -35,7 +35,7 @@ class Plugin {
         const pluginPath = path.resolve(item.name);
         plugin = require(pluginPath);
       } else {
-        module.paths.push('./node_modules');
+        module.paths.push("./node_modules");
         plugin = require(item.name);
         module.paths.pop();
       }
@@ -50,7 +50,7 @@ class Plugin {
   onHandlePlugins(plugins) {
     this._plugins = plugins;
     const ev = new PluginEvent({plugins});
-    this._execHandler('onHandlePlugins', ev);
+    this._execHandler("onHandlePlugins", ev);
     this._plugins = ev.data.plugins;
   }
 
@@ -59,7 +59,7 @@ class Plugin {
    */
   onStart() {
     const ev = new PluginEvent();
-    this._execHandler('onStart', ev);
+    this._execHandler("onStart", ev);
   }
 
   /**
@@ -69,7 +69,7 @@ class Plugin {
    */
   onHandleConfig(config) {
     const ev = new PluginEvent({config});
-    this._execHandler('onHandleConfig', ev);
+    this._execHandler("onHandleConfig", ev);
     return ev.data.config;
   }
 
@@ -82,7 +82,7 @@ class Plugin {
   onHandleCode(code, filePath) {
     const ev = new PluginEvent({code});
     ev.data.filePath = filePath;
-    this._execHandler('onHandleCode', ev);
+    this._execHandler("onHandleCode", ev);
     return ev.data.code;
   }
 
@@ -97,7 +97,7 @@ class Plugin {
   onHandleCodeParser(parser, parserOption, filePath, code) {
     const ev = new PluginEvent();
     ev.data = {parser, parserOption, filePath, code};
-    this._execHandler('onHandleCodeParser', ev);
+    this._execHandler("onHandleCodeParser", ev);
     return {parser: ev.data.parser, parserOption: ev.data.parserOption};
   }
 
@@ -112,7 +112,7 @@ class Plugin {
     const ev = new PluginEvent({ast});
     ev.data.filePath = filePath;
     ev.data.code = code;
-    this._execHandler('onHandleAST', ev);
+    this._execHandler("onHandleAST", ev);
     return ev.data.ast;
   }
 
@@ -123,7 +123,7 @@ class Plugin {
    */
   onHandleDocs(docs) {
     const ev = new PluginEvent({docs});
-    this._execHandler('onHandleDocs', ev);
+    this._execHandler("onHandleDocs", ev);
     return ev.data.docs;
   }
 
@@ -142,7 +142,7 @@ class Plugin {
     ev.data.copyDir = copyDir;
     ev.data.readFile = readFile;
 
-    this._execHandler('onPublish', ev);
+    this._execHandler("onPublish", ev);
   }
 
   /**
@@ -153,7 +153,7 @@ class Plugin {
    */
   onHandleContent(content, fileName) {
     const ev = new PluginEvent({content, fileName});
-    this._execHandler('onHandleContent', ev);
+    this._execHandler("onHandleContent", ev);
     return ev.data.content;
   }
 
@@ -162,7 +162,7 @@ class Plugin {
    */
   onComplete() {
     const ev = new PluginEvent();
-    this._execHandler('onComplete', ev);
+    this._execHandler("onComplete", ev);
   }
 }
 

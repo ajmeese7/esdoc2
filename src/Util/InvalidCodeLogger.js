@@ -1,4 +1,4 @@
-import fs from 'fs-extra';
+import fs from "fs-extra";
 
 /**
  * logger for invalid code which can not be parsed with esdoc2.
@@ -19,7 +19,7 @@ class InvalidCodeLogger {
       return;
     }
 
-    const lines = fs.readFileSync(filePath).toString().split('\n');
+    const lines = fs.readFileSync(filePath).toString().split("\n");
     const targetLines = [];
     let start;
     const end = node.loc.start.line;
@@ -34,10 +34,10 @@ class InvalidCodeLogger {
       targetLines.push(`${i + 1}| ${lines[i]}`);
     }
 
-    console.log('[31merror: could not process the following code.[32m');
+    console.log("[31merror: could not process the following code.[32m");
     console.log(filePath);
-    console.log(targetLines.join('\n'));
-    console.log('[0m');
+    console.log(targetLines.join("\n"));
+    console.log("[0m");
 
     this._logs.push({filePath: filePath, log: [start, end]});
   }
@@ -47,9 +47,9 @@ class InvalidCodeLogger {
    * @param {Error} error - target error.
    */
   showError(error) {
-    console.log('[31m');
+    console.log("[31m");
     console.log(error);
-    console.log('[0m');
+    console.log("[0m");
   }
 
   /**
@@ -58,7 +58,7 @@ class InvalidCodeLogger {
    * @param {Error} error - error object.
    */
   showFile(filePath, error) {
-    const lines = fs.readFileSync(filePath).toString().split('\n');
+    const lines = fs.readFileSync(filePath).toString().split("\n");
     const start = Math.max(error.loc.line - 3, 1);
     const end = Math.min(error.loc.line + 3, lines.length);
     const targetLines = [];
@@ -66,9 +66,9 @@ class InvalidCodeLogger {
       targetLines.push(`${i + 1}| ${lines[i]}`);
     }
 
-    console.log('[31mwarning: could not parse the following code. if you want to use ECMAScript proposals, see https://esdoc2.org/manual/feature.html#ecmascript-proposal[32m');
+    console.log("[31mwarning: could not parse the following code. if you want to use ECMAScript proposals, see https://esdoc2.org/manual/feature.html#ecmascript-proposal[32m");
     console.log(filePath);
-    console.log(`${targetLines.join('\n')}[0m`);
+    console.log(`${targetLines.join("\n")}[0m`);
 
     this._logs.push({filePath: filePath, log: [start, end]});
   }

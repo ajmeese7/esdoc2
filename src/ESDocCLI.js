@@ -1,14 +1,14 @@
 #!/usr/bin/env node
-import fs from 'fs';
-import path from 'path';
-import minimist from 'minimist';
-import esdoc2 from './ESDoc.js';
-import NPMUtil from './Util/NPMUtil.js';
-import log from 'npmlog';
+import fs from "fs";
+import path from "path";
+import minimist from "minimist";
+import esdoc2 from "./ESDoc.js";
+import NPMUtil from "./Util/NPMUtil.js";
+import log from "npmlog";
 
-log.heading = 'ESDoc2';
-log.info('using', 'node@%s', process.version);
-log.info('using', 'esdoc2@%s', NPMUtil.findPackage().version);
+log.heading = "ESDoc2";
+log.info("using", "node@%s", process.version);
+log.info("using", "esdoc2@%s", NPMUtil.findPackage().version);
 /**
  * Command Line Interface for esdoc2.
  *
@@ -35,8 +35,8 @@ export default class ESDocCLI {
       process.exit(0);
     }
 
-    process.on('unhandledRejection', (reason, p) => {
-      console.error('Unhandled Rejection at: Promise', p, 'reason:', reason);
+    process.on("unhandledRejection", (reason, p) => {
+      console.error("Unhandled Rejection at: Promise", p, "reason:", reason);
     });
   }
 
@@ -47,7 +47,7 @@ export default class ESDocCLI {
     let config;
 
     const configPath = this._findConfigFilePath();
-    log.info('config', configPath);
+    log.info("config", configPath);
     if (configPath) {
       config = this._createConfigFromJSONFile(configPath);
     } else {
@@ -67,18 +67,18 @@ export default class ESDocCLI {
    * @private
    */
   _showHelp() {
-    console.log('Usage: esdoc [-c esdoc.json]');
-    console.log('');
-    console.log('Options:');
-    console.log('  -c', 'specify config file');
-    console.log('  -h', 'output usage information');
-    console.log('  -v', 'output the version number');
-    console.log('');
-    console.log('esdoc2 finds configuration by the order:');
-    console.log('  1. `-c your-esdoc.json`');
-    console.log('  2. `.esdoc.json` in current directory');
-    console.log('  3. `.esdoc.js` in current directory');
-    console.log('  4. `esdoc` property in package.json');
+    console.log("Usage: esdoc [-c esdoc.json]");
+    console.log("");
+    console.log("Options:");
+    console.log("  -c", "specify config file");
+    console.log("  -h", "output usage information");
+    console.log("  -v", "output the version number");
+    console.log("");
+    console.log("esdoc2 finds configuration by the order:");
+    console.log("  1. `-c your-esdoc.json`");
+    console.log("  2. `.esdoc.json` in current directory");
+    console.log("  3. `.esdoc.js` in current directory");
+    console.log("  4. `esdoc` property in package.json");
   }
 
   /**
@@ -90,7 +90,7 @@ export default class ESDocCLI {
     if (packageObj) {
       console.log(packageObj.version);
     } else {
-      console.log('0.0.0');
+      console.log("0.0.0");
     }
   }
 
@@ -105,7 +105,7 @@ export default class ESDocCLI {
     }
 
     try {
-      const filePath = path.resolve('./.esdoc.json');
+      const filePath = path.resolve("./.esdoc.json");
       fs.readFileSync(filePath);
       return filePath;
     } catch (e) {
@@ -113,7 +113,7 @@ export default class ESDocCLI {
     }
 
     try {
-      const filePath = path.resolve('./.esdoc.js');
+      const filePath = path.resolve("./.esdoc.js");
       fs.readFileSync(filePath);
       return filePath;
     } catch (e) {
@@ -132,11 +132,11 @@ export default class ESDocCLI {
   _createConfigFromJSONFile(configFilePath) {
     configFilePath = path.resolve(configFilePath);
     const ext = path.extname(configFilePath);
-    if (ext === '.js') {
+    if (ext === ".js") {
       /* eslint-disable global-require */
       return require(configFilePath);
     } else {
-      const configJSON = fs.readFileSync(configFilePath, {encode: 'utf8'});
+      const configJSON = fs.readFileSync(configFilePath, {encode: "utf8"});
       const config = JSON.parse(configJSON);
       return config;
     }
@@ -149,8 +149,8 @@ export default class ESDocCLI {
    */
   _createConfigFromPackageJSON() {
     try {
-      const filePath = path.resolve('./package.json');
-      const packageJSON = fs.readFileSync(filePath, 'utf8').toString();
+      const filePath = path.resolve("./package.json");
+      const packageJSON = fs.readFileSync(filePath, "utf8").toString();
       const packageObj = JSON.parse(packageJSON);
       return packageObj.esdoc2;
     } catch (e) {

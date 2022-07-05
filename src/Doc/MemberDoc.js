@@ -1,6 +1,6 @@
-import AbstractDoc from './AbstractDoc.js';
-import MethodDoc from './MethodDoc.js';
-import babelGenerator from 'babel-generator';
+import AbstractDoc from "./AbstractDoc.js";
+import MethodDoc from "./MethodDoc.js";
+import babelGenerator from "babel-generator";
 
 /**
  * Doc Class from Member Expression AST node.
@@ -13,22 +13,22 @@ export default class MemberDoc extends AbstractDoc {
   _apply() {
     super._apply();
 
-    Reflect.deleteProperty(this._value, 'export');
-    Reflect.deleteProperty(this._value, 'importPath');
-    Reflect.deleteProperty(this._value, 'importStyle');
+    Reflect.deleteProperty(this._value, "export");
+    Reflect.deleteProperty(this._value, "importPath");
+    Reflect.deleteProperty(this._value, "importStyle");
   }
 
   /** specify ``member`` to kind. */
   _$kind() {
     super._$kind();
-    this._value.kind = 'member';
+    this._value.kind = "member";
   }
 
   /** use static property in class */
   _$static() {
     let parent = this._node.parent;
     while (parent) {
-      if (parent.type === 'ClassMethod') {
+      if (parent.type === "ClassMethod") {
         this._value.static = parent.static;
         break;
       }
@@ -40,10 +40,10 @@ export default class MemberDoc extends AbstractDoc {
   _$name() {
     let name;
     if (this._node.left.computed) {
-      const expression = babelGenerator(this._node.left.property).code.replace(/^this/, '');
+      const expression = babelGenerator(this._node.left.property).code.replace(/^this/, "");
       name = `[${expression}]`;
     } else {
-      name = this._flattenMemberExpression(this._node.left).replace(/^this\./, '');
+      name = this._flattenMemberExpression(this._node.left).replace(/^this\./, "");
     }
     this._value.name = name;
   }

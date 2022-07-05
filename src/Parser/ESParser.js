@@ -1,6 +1,6 @@
-import fs from 'fs-extra';
-import Plugin from '../Plugin/Plugin.js';
-import * as babylon from 'babylon';
+import fs from "fs-extra";
+import Plugin from "../Plugin/Plugin.js";
+import * as babylon from "babylon";
 
 /**
  * ECMAScript Parser class.
@@ -15,11 +15,11 @@ export default class ESParser {
    * @returns {AST} AST of source code.
    */
   static parse(filePath) {
-    let code = fs.readFileSync(filePath, {encode: 'utf8'}).toString();
+    let code = fs.readFileSync(filePath, {encode: "utf8"}).toString();
     code = Plugin.onHandleCode(code, filePath);
-    if (code.charAt(0) === '#') code = code.replace(/^#!/, '//');
+    if (code.charAt(0) === "#") code = code.replace(/^#!/, "//");
 
-    let parserOption = {sourceType: 'module', plugins: []};
+    let parserOption = {sourceType: "module", plugins: []};
     let parser = (code) => {
       return babylon.parse(code, parserOption);
     };

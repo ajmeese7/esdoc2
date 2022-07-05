@@ -1,18 +1,18 @@
-import log from 'npmlog';
-import CommentParser from '../Parser/CommentParser.js';
-import FileDoc from '../Doc/FileDoc.js';
-import ClassDoc from '../Doc/ClassDoc.js';
-import MethodDoc from '../Doc/MethodDoc.js';
-import ClassProperty from '../Doc/ClassPropertyDoc';
-import MemberDoc from '../Doc/MemberDoc.js';
-import FunctionDoc from '../Doc/FunctionDoc.js';
-import VariableDoc from '../Doc/VariableDoc.js';
-import AssignmentDoc from '../Doc/AssignmentDoc.js';
-import TypedefDoc from '../Doc/TypedefDoc.js';
-import ExternalDoc from '../Doc/ExternalDoc.js';
-import ASTUtil from '../Util/ASTUtil.js';
+import log from "npmlog";
+import CommentParser from "../Parser/CommentParser.js";
+import FileDoc from "../Doc/FileDoc.js";
+import ClassDoc from "../Doc/ClassDoc.js";
+import MethodDoc from "../Doc/MethodDoc.js";
+import ClassProperty from "../Doc/ClassPropertyDoc";
+import MemberDoc from "../Doc/MemberDoc.js";
+import FunctionDoc from "../Doc/FunctionDoc.js";
+import VariableDoc from "../Doc/VariableDoc.js";
+import AssignmentDoc from "../Doc/AssignmentDoc.js";
+import TypedefDoc from "../Doc/TypedefDoc.js";
+import ExternalDoc from "../Doc/ExternalDoc.js";
+import ASTUtil from "../Util/ASTUtil.js";
 
-const already = Symbol('already');
+const already = Symbol("already");
 
 /**
  * Doc factory class.
@@ -47,7 +47,7 @@ export default class DocFactory {
     // file doc
     const doc = new FileDoc(ast, ast, pathResolver, []);
     this._results.push(doc.value);
-    log.verbose('add', doc.value);
+    log.verbose("add", doc.value);
     // ast does not child, so only comment.
     if (ast.program.body.length === 0 && ast.program.innerComments) {
       const results = this._traverseComments(ast, null, ast.program.innerComments);
@@ -87,25 +87,25 @@ export default class DocFactory {
     const pseudoExportNodes = [];
 
     for (const exportNode of this._ast.program.body) {
-      if (exportNode.type !== 'ExportDefaultDeclaration') continue;
+      if (exportNode.type !== "ExportDefaultDeclaration") continue;
 
       let targetClassName = null;
       let targetVariableName = null;
       let pseudoClassExport;
 
       switch (exportNode.declaration.type) {
-        case 'NewExpression':
-          if (exportNode.declaration.callee.type === 'Identifier') {
+        case "NewExpression":
+          if (exportNode.declaration.callee.type === "Identifier") {
             targetClassName = exportNode.declaration.callee.name;
-          } else if (exportNode.declaration.callee.type === 'MemberExpression') {
+          } else if (exportNode.declaration.callee.type === "MemberExpression") {
             targetClassName = exportNode.declaration.callee.property.name;
           } else {
-            targetClassName = '';
+            targetClassName = "";
           }
           targetVariableName = targetClassName.replace(/^./, c => c.toLowerCase());
           pseudoClassExport = true;
           break;
-        case 'Identifier': {
+        case "Identifier": {
           const varNode = ASTUtil.findVariableDeclarationAndNewExpressionNode(exportNode.declaration.name, this._ast);
           if (varNode) {
             targetClassName = varNode.declarations[0].init.callee.name;
@@ -119,7 +119,7 @@ export default class DocFactory {
           break;
         }
         default:
-          log.warn('ast', `unknown export declaration type. type = "${exportNode.declaration.type}"`);
+          log.warn("ast", `unknown export declaration type. type = "${exportNode.declaration.type}"`);
           break;
       }
 
@@ -191,11 +191,11 @@ export default class DocFactory {
     const pseudoExportNodes = [];
 
     for (const exportNode of this._ast.program.body) {
-      if (exportNode.type !== 'ExportNamedDeclaration') continue;
+      if (exportNode.type !== "ExportNamedDeclaration") continue;
 
-      if (exportNode.declaration && exportNode.declaration.type === 'VariableDeclaration') {
+      if (exportNode.declaration && exportNode.declaration.type === "VariableDeclaration") {
         for (const declaration of exportNode.declaration.declarations) {
-          if (!declaration.init || declaration.init.type !== 'NewExpression') continue;
+          if (!declaration.init || declaration.init.type !== "NewExpression") continue;
 
           const {classNode, exported} = ASTUtil.findClassDeclarationNode(declaration.init.callee.name, this._ast);
           if (classNode && !exported) {
@@ -211,7 +211,7 @@ export default class DocFactory {
       }
 
       for (const specifier of exportNode.specifiers) {
-        if (specifier.type !== 'ExportSpecifier') continue;
+        if (specifier.type !== "ExportSpecifier") continue;
 
         let targetClassName = null;
         let pseudoClassExport;
@@ -281,15 +281,15 @@ export default class DocFactory {
     const isLastNodeInParent = this._isLastNodeInParent(node, parentNode);
 
     node[already] = true;
-    Reflect.defineProperty(node, 'parent', {value: parentNode});
+    Reflect.defineProperty(node, "parent", {value: parentNode});
 
     // unwrap export declaration
-    if (['ExportDefaultDeclaration', 'ExportNamedDeclaration'].includes(node.type)) {
+    if (["ExportDefaultDeclaration", "ExportNamedDeclaration"].includes(node.type)) {
       parentNode = node;
       node = this._unwrapExportDeclaration(node);
       if (!node) return;
       node[already] = true;
-      Reflect.defineProperty(node, 'parent', {value: parentNode});
+      Reflect.defineProperty(node, "parent", {value: parentNode});
     }
 
     // if node has decorators, leading comments is attached to decorators.
@@ -322,7 +322,7 @@ export default class DocFactory {
   _traverseComments(parentNode, node, comments) {
     if (!node) {
       const virtualNode = {};
-      Reflect.defineProperty(virtualNode, 'parent', {value: parentNode});
+      Reflect.defineProperty(virtualNode, "parent", {value: parentNode});
       node = virtualNode;
     }
 
@@ -337,7 +337,7 @@ export default class DocFactory {
     }
 
     if (comments.length === 0) {
-      comments = [{type: 'CommentBlock', value: '* @undocument'}];
+      comments = [{type: "CommentBlock", value: "* @undocument"}];
     }
 
     const results = [];
@@ -350,7 +350,7 @@ export default class DocFactory {
         doc = this._createDoc(node, tags);
       } else {
         const virtualNode = {};
-        Reflect.defineProperty(virtualNode, 'parent', {value: parentNode});
+        Reflect.defineProperty(virtualNode, "parent", {value: parentNode});
         doc = this._createDoc(virtualNode, tags);
       }
 
@@ -374,22 +374,22 @@ export default class DocFactory {
 
     if (!type) return null;
 
-    if (type === 'Class') {
+    if (type === "Class") {
       this._processedClassNodes.push(node);
     }
 
     let Clazz;
     /* eslint-disable max-statements-per-line */
     switch (type) {
-      case 'Class': Clazz = ClassDoc; break;
-      case 'Method': Clazz = MethodDoc; break;
-      case 'ClassProperty': Clazz = ClassProperty; break;
-      case 'Member': Clazz = MemberDoc; break;
-      case 'Function': Clazz = FunctionDoc; break;
-      case 'Variable': Clazz = VariableDoc; break;
-      case 'Assignment': Clazz = AssignmentDoc; break;
-      case 'Typedef': Clazz = TypedefDoc; break;
-      case 'External': Clazz = ExternalDoc; break;
+      case "Class": Clazz = ClassDoc; break;
+      case "Method": Clazz = MethodDoc; break;
+      case "ClassProperty": Clazz = ClassProperty; break;
+      case "Member": Clazz = MemberDoc; break;
+      case "Function": Clazz = FunctionDoc; break;
+      case "Variable": Clazz = VariableDoc; break;
+      case "Assignment": Clazz = AssignmentDoc; break;
+      case "Typedef": Clazz = TypedefDoc; break;
+      case "External": Clazz = ExternalDoc; break;
       default:
         throw new Error(`unexpected type: ${type}`);
     }
@@ -413,8 +413,8 @@ export default class DocFactory {
       const tagName = tag.tagName;
       /* eslint-disable default-case */
       switch (tagName) {
-        case '@typedef': type = 'Typedef'; break;
-        case '@external': type = 'External'; break;
+        case "@typedef": type = "Typedef"; break;
+        case "@external": type = "External"; break;
       }
     }
 
@@ -424,23 +424,23 @@ export default class DocFactory {
 
     /* eslint-disable default-case */
     switch (node.type) {
-      case 'ClassDeclaration':
+      case "ClassDeclaration":
         return this._decideClassDeclarationType(node);
-      case 'ClassMethod':
+      case "ClassMethod":
         return this._decideMethodDefinitionType(node);
-      case 'ClassProperty':
+      case "ClassProperty":
         return this._decideClassPropertyType(node);
-      case 'ExpressionStatement':
+      case "ExpressionStatement":
         return this._decideExpressionStatementType(node);
-      case 'FunctionDeclaration':
+      case "FunctionDeclaration":
         return this._decideFunctionDeclarationType(node);
-      case 'FunctionExpression':
+      case "FunctionExpression":
         return this._decideFunctionExpressionType(node);
-      case 'VariableDeclaration':
+      case "VariableDeclaration":
         return this._decideVariableType(node);
-      case 'AssignmentExpression':
+      case "AssignmentExpression":
         return this._decideAssignmentType(node);
-      case 'ArrowFunctionExpression':
+      case "ArrowFunctionExpression":
         return this._decideArrowFunctionExpressionType(node);
     }
 
@@ -456,7 +456,7 @@ export default class DocFactory {
   _decideClassDeclarationType(node) {
     if (!this._isTopDepthInBody(node, this._ast.program.body)) return {type: null, node: null};
 
-    return {type: 'Class', node: node};
+    return {type: "Class", node: node};
   }
 
   /**
@@ -466,11 +466,11 @@ export default class DocFactory {
    * @private
    */
   _decideMethodDefinitionType(node) {
-    const classNode = this._findUp(node, ['ClassDeclaration', 'ClassExpression']);
+    const classNode = this._findUp(node, ["ClassDeclaration", "ClassExpression"]);
     if (this._processedClassNodes.includes(classNode)) {
-      return {type: 'Method', node: node};
+      return {type: "Method", node: node};
     } else {
-      log.warn('node', 'this method is not in class', node);
+      log.warn("node", "this method is not in class", node);
       return {type: null, node: null};
     }
   }
@@ -482,11 +482,11 @@ export default class DocFactory {
    * @private
    */
   _decideClassPropertyType(node) {
-    const classNode = this._findUp(node, ['ClassDeclaration', 'ClassExpression']);
+    const classNode = this._findUp(node, ["ClassDeclaration", "ClassExpression"]);
     if (this._processedClassNodes.includes(classNode)) {
-      return {type: 'ClassProperty', node: node};
+      return {type: "ClassProperty", node: node};
     } else {
-      log.warn('node', 'this class property is not in class', node);
+      log.warn("node", "this class property is not in class", node);
       return {type: null, node: null};
     }
   }
@@ -500,7 +500,7 @@ export default class DocFactory {
   _decideFunctionDeclarationType(node) {
     if (!this._isTopDepthInBody(node, this._ast.program.body)) return {type: null, node: null};
 
-    return {type: 'Function', node: node};
+    return {type: "Function", node: node};
   }
 
   /**
@@ -517,7 +517,7 @@ export default class DocFactory {
     if (!node.async) return {type: null, node: null};
     if (!this._isTopDepthInBody(node, this._ast.program.body)) return {type: null, node: null};
 
-    return {type: 'Function', node: node};
+    return {type: "Function", node: node};
   }
 
   /**
@@ -529,7 +529,7 @@ export default class DocFactory {
   _decideArrowFunctionExpressionType(node) {
     if (!this._isTopDepthInBody(node, this._ast.program.body)) return {type: null, node: null};
 
-    return {type: 'Function', node: node};
+    return {type: "Function", node: node};
   }
 
   /**
@@ -540,7 +540,7 @@ export default class DocFactory {
    */
   _decideExpressionStatementType(node) {
     const isTop = this._isTopDepthInBody(node, this._ast.program.body);
-    Reflect.defineProperty(node.expression, 'parent', {value: node});
+    Reflect.defineProperty(node.expression, "parent", {value: node});
     node = node.expression;
     node[already] = true;
 
@@ -550,21 +550,21 @@ export default class DocFactory {
     if (!node.right) return {type: null, node: null};
 
     switch (node.right.type) {
-      case 'FunctionExpression':
-        innerType = 'Function';
+      case "FunctionExpression":
+        innerType = "Function";
         break;
-      case 'ClassExpression':
-        innerType = 'Class';
+      case "ClassExpression":
+        innerType = "Class";
         break;
       default:
-        if (node.left.type === 'MemberExpression' && node.left.object.type === 'ThisExpression') {
-          const classNode = this._findUp(node, ['ClassExpression', 'ClassDeclaration']);
+        if (node.left.type === "MemberExpression" && node.left.object.type === "ThisExpression") {
+          const classNode = this._findUp(node, ["ClassExpression", "ClassDeclaration"]);
           if (!this._processedClassNodes.includes(classNode)) {
-            log.warn('node', 'this member is not in class.', this._pathResolver.filePath, node);
+            log.warn("node", "this member is not in class.", this._pathResolver.filePath, node);
             return {type: null, node: null};
           }
 
-          return {type: 'Member', node: node};
+          return {type: "Member", node: node};
         } else {
           return {type: null, node: null};
         }
@@ -575,7 +575,7 @@ export default class DocFactory {
     /* eslint-disable prefer-const */
     innerNode = node.right;
     innerNode.id = this._copy(node.left.id || node.left.property);
-    Reflect.defineProperty(innerNode, 'parent', {value: node});
+    Reflect.defineProperty(innerNode, "parent", {value: node});
     innerNode[already] = true;
 
     return {type: innerType, node: innerNode};
@@ -596,22 +596,22 @@ export default class DocFactory {
     if (!node.declarations[0].init) return {type: innerType, node: innerNode};
 
     switch (node.declarations[0].init.type) {
-      case 'FunctionExpression':
-        innerType = 'Function';
+      case "FunctionExpression":
+        innerType = "Function";
         break;
-      case 'ClassExpression':
-        innerType = 'Class';
+      case "ClassExpression":
+        innerType = "Class";
         break;
-      case 'ArrowFunctionExpression':
-        innerType = 'Function';
+      case "ArrowFunctionExpression":
+        innerType = "Function";
         break;
       default:
-        return {type: 'Variable', node: node};
+        return {type: "Variable", node: node};
     }
 
     innerNode = node.declarations[0].init;
     innerNode.id = this._copy(node.declarations[0].id);
-    Reflect.defineProperty(innerNode, 'parent', {value: node});
+    Reflect.defineProperty(innerNode, "parent", {value: node});
     innerNode[already] = true;
 
     return {type: innerType, node: innerNode};
@@ -630,20 +630,20 @@ export default class DocFactory {
     let innerNode;
 
     switch (node.right.type) {
-      case 'FunctionExpression':
-        innerType = 'Function';
+      case "FunctionExpression":
+        innerType = "Function";
         break;
-      case 'ClassExpression':
-        innerType = 'Class';
+      case "ClassExpression":
+        innerType = "Class";
         break;
       default:
-        return {type: 'Assignment', node: node};
+        return {type: "Assignment", node: node};
     }
 
     /* eslint-disable prefer-const */
     innerNode = node.right;
     innerNode.id = this._copy(node.left.id || node.left.property);
-    Reflect.defineProperty(innerNode, 'parent', {value: node});
+    Reflect.defineProperty(innerNode, "parent", {value: node});
     innerNode[already] = true;
 
     return {type: innerType, node: innerNode};
@@ -697,7 +697,7 @@ export default class DocFactory {
     if (!Array.isArray(body)) return false;
 
     const parentNode = node.parent;
-    if (['ExportDefaultDeclaration', 'ExportNamedDeclaration'].includes(parentNode.type)) {
+    if (["ExportDefaultDeclaration", "ExportNamedDeclaration"].includes(parentNode.type)) {
       node = parentNode;
     }
 

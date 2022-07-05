@@ -1,6 +1,6 @@
-import log from 'npmlog';
-import AbstractDoc from './AbstractDoc.js';
-import ParamParser from '../Parser/ParamParser.js';
+import log from "npmlog";
+import AbstractDoc from "./AbstractDoc.js";
+import ParamParser from "../Parser/ParamParser.js";
 
 /**
  * Doc class for virtual comment node of typedef.
@@ -15,22 +15,22 @@ export default class TypedefDoc extends AbstractDoc {
 
     this._$typedef();
 
-    Reflect.deleteProperty(this._value, 'export');
-    Reflect.deleteProperty(this._value, 'importPath');
-    Reflect.deleteProperty(this._value, 'importStyle');
+    Reflect.deleteProperty(this._value, "export");
+    Reflect.deleteProperty(this._value, "importPath");
+    Reflect.deleteProperty(this._value, "importStyle");
   }
 
   /** specify ``typedef`` to kind. */
   _$kind() {
     super._$kind();
-    this._value.kind = 'typedef';
+    this._value.kind = "typedef";
   }
 
   /** set name by using tag. */
   _$name() {
-    const tags = this._findAll(['@typedef']);
+    const tags = this._findAll(["@typedef"]);
     if (!tags) {
-      log.warn('can not resolve name.');
+      log.warn("can not resolve name.");
       return;
     }
 
@@ -50,7 +50,7 @@ export default class TypedefDoc extends AbstractDoc {
     let memberof;
     let parent = this._node.parent;
     while (parent) {
-      if (parent.type === 'ClassDeclaration') {
+      if (parent.type === "ClassDeclaration") {
         memberof = `${this._pathResolver.filePath}~${parent.id.name}`;
         this._value.memberof = memberof;
         return;
@@ -63,17 +63,17 @@ export default class TypedefDoc extends AbstractDoc {
 
   /** for @typedef */
   _$typedef() {
-    const value = this._findTagValue(['@typedef']);
+    const value = this._findTagValue(["@typedef"]);
     if (!value) return;
 
     const {typeText, paramName, paramDesc} = ParamParser.parseParamValue(value, true, true, false);
     const result = ParamParser.parseParam(typeText, paramName, paramDesc);
 
-    log.verbose('@typedef', result);
+    log.verbose("@typedef", result);
 
-    Reflect.deleteProperty(result, 'description');
-    Reflect.deleteProperty(result, 'nullable');
-    Reflect.deleteProperty(result, 'spread');
+    Reflect.deleteProperty(result, "description");
+    Reflect.deleteProperty(result, "nullable");
+    Reflect.deleteProperty(result, "spread");
 
     this._value.type = result;
   }

@@ -1,4 +1,4 @@
-import babelTraverse from 'babel-traverse';
+import babelTraverse from "babel-traverse";
 
 /**
  * Utility for AST.
@@ -11,8 +11,8 @@ export default class ASTUtil {
    */
   static sanitize(node) {
     if (!node) return;
-    node.type = 'Identifier';
-    node.name = '_';
+    node.type = "Identifier";
+    node.name = "_";
     node.leadingComments = [];
     node.trailingComments = [];
   }
@@ -45,7 +45,7 @@ export default class ASTUtil {
       noScope: true,
       enter: function(_path) {
         const node = _path.node;
-        if (node.type !== 'ImportDeclaration') return;
+        if (node.type !== "ImportDeclaration") return;
 
         for (const spec of node.specifiers) {
           const localName = spec.local.name;
@@ -70,9 +70,9 @@ export default class ASTUtil {
     if (!name) return null;
 
     for (const node of ast.program.body) {
-      if (node.type === 'VariableDeclaration' &&
+      if (node.type === "VariableDeclaration" &&
         node.declarations[0].init &&
-        node.declarations[0].init.type === 'NewExpression' &&
+        node.declarations[0].init.type === "NewExpression" &&
         node.declarations[0].id.name === name) {
         return node;
       }
@@ -91,10 +91,10 @@ export default class ASTUtil {
     if (!name) return {classNode: null, exported: null};
 
     for (const node of ast.program.body) {
-      if (node.type === 'ClassDeclaration' && node.id.name === name) return {classNode: node, exported: false};
+      if (node.type === "ClassDeclaration" && node.id.name === name) return {classNode: node, exported: false};
 
-      if (node.type === 'ExportDefaultDeclaration' || node.type === 'ExportNamedDeclaration') {
-        if (node.declaration && node.declaration.type === 'ClassDeclaration' && node.declaration.id && node.declaration.id.name === name) return {classNode: node, exported: true};
+      if (node.type === "ExportDefaultDeclaration" || node.type === "ExportNamedDeclaration") {
+        if (node.declaration && node.declaration.type === "ClassDeclaration" && node.declaration.id && node.declaration.id.name === name) return {classNode: node, exported: true};
       }
     }
 
@@ -111,7 +111,7 @@ export default class ASTUtil {
     if (!name) return null;
 
     for (const node of ast.program.body) {
-      if (node.type === 'FunctionDeclaration' && node.id.name === name) return node;
+      if (node.type === "FunctionDeclaration" && node.id.name === name) return node;
     }
 
     return null;
@@ -127,7 +127,7 @@ export default class ASTUtil {
     if (!name) return null;
 
     for (const node of ast.program.body) {
-      if (node.type === 'VariableDeclaration' && node.declarations[0].id.name === name) return node;
+      if (node.type === "VariableDeclaration" && node.declarations[0].id.name === name) return node;
     }
 
     return null;
@@ -142,14 +142,14 @@ export default class ASTUtil {
    */
   static createVariableDeclarationAndNewExpressionNode(name, className, loc) {
     const node = {
-      type: 'VariableDeclaration',
-      kind: 'let',
+      type: "VariableDeclaration",
+      kind: "let",
       loc: loc,
       declarations: [
         {
-          type: 'VariableDeclarator',
-          id: {type: 'Identifier', name: name},
-          init: {type: 'NewExpression', callee: {type: 'Identifier', name: className}}
+          type: "VariableDeclarator",
+          id: {type: "Identifier", name: name},
+          init: {type: "NewExpression", callee: {type: "Identifier", name: className}}
         }
       ]
     };

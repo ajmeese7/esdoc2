@@ -1,5 +1,5 @@
-import AbstractDoc from './AbstractDoc.js';
-import babelGenerator from 'babel-generator';
+import AbstractDoc from "./AbstractDoc.js";
+import babelGenerator from "babel-generator";
 
 /**
  * Doc Class from Method Definition AST node.
@@ -12,9 +12,9 @@ export default class MethodDoc extends AbstractDoc {
   _apply() {
     super._apply();
 
-    Reflect.deleteProperty(this._value, 'export');
-    Reflect.deleteProperty(this._value, 'importPath');
-    Reflect.deleteProperty(this._value, 'importStyle');
+    Reflect.deleteProperty(this._value, "export");
+    Reflect.deleteProperty(this._value, "importPath");
+    Reflect.deleteProperty(this._value, "importStyle");
   }
 
   /** use kind property of self node. */
@@ -42,7 +42,7 @@ export default class MethodDoc extends AbstractDoc {
     let memberof;
     let parent = this._node.parent;
     while (parent) {
-      if (parent.type === 'ClassDeclaration' || parent.type === 'ClassExpression') {
+      if (parent.type === "ClassDeclaration" || parent.type === "ClassExpression") {
         memberof = `${this._pathResolver.filePath}~${parent.doc.value.name}`;
         this._value.memberof = memberof;
         return;

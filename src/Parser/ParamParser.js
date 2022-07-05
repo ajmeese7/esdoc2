@@ -1,4 +1,4 @@
-import assert from 'assert';
+import assert from "assert";
 
 /**
  * Param Type Parser class.
@@ -36,21 +36,21 @@ export default class ParamParser {
       match = value.match(reg);
       if (match) {
         typeText = match[1];
-        value = value.replace(reg, '');
+        value = value.replace(reg, "");
       } else {
-        typeText = '*';
+        typeText = "*";
       }
     }
 
     // e.g. [p1=123]
     if (name) {
-      if (value.charAt(0) === '[') {
-        paramName = '';
+      if (value.charAt(0) === "[") {
+        paramName = "";
         let counter = 0;
         for (const c of value) {
           paramName += c;
-          if (c === '[') counter++;
-          if (c === ']') counter--;
+          if (c === "[") counter++;
+          if (c === "]") counter--;
           if (counter === 0) break;
         }
 
@@ -61,7 +61,7 @@ export default class ParamParser {
         match = value.match(/^(\S+)/);
         if (match) {
           paramName = match[1];
-          value = value.replace(/^\S+\s*/, '');
+          value = value.replace(/^\S+\s*/, "");
         }
       }
     }
@@ -96,22 +96,22 @@ export default class ParamParser {
 
     if (typeText) {
       // check nullable
-      if (typeText[0] === '?') {
+      if (typeText[0] === "?") {
         result.nullable = true;
-      } else if (typeText[0] === '!') {
+      } else if (typeText[0] === "!") {
         result.nullable = false;
       } else {
         result.nullable = null;
       }
-      typeText = typeText.replace(/^[?!]/, '');
+      typeText = typeText.replace(/^[?!]/, "");
 
       // check record and union
-      if (typeText[0] === '{') {
+      if (typeText[0] === "{") {
         result.types = [typeText];
-      } else if (typeText[0] === '(') {
-        typeText = typeText.replace(/^[(]/, '').replace(/[)]$/, '');
-        result.types = typeText.split('|');
-      } else if (typeText.includes('|')) {
+      } else if (typeText[0] === "(") {
+        typeText = typeText.replace(/^[(]/, "").replace(/[)]$/, "");
+        result.types = typeText.split("|");
+      } else if (typeText.includes("|")) {
         if (typeText.match(/<.*?\|.*?>/)) {
           // union in generics. e.g. `Array<string|number>`
           // hack: in this case, process this type in DocBuilder#_buildTypeDocLinkHTML
@@ -121,19 +121,19 @@ export default class ParamParser {
           // hack: in this case, process this type in DocBuilder#_buildTypeDocLinkHTML
           result.types = [typeText];
         } else {
-          result.types = typeText.split('|');
+          result.types = typeText.split("|");
         }
       } else {
         result.types = [typeText];
       }
 
-      if (typeText.indexOf('...') === 0) {
+      if (typeText.indexOf("...") === 0) {
         result.spread = true;
       } else {
         result.spread = false;
       }
     } else {
-      result.types = [''];
+      result.types = [""];
     }
 
     if (result.types.some(t => !t)) {
@@ -142,15 +142,15 @@ export default class ParamParser {
 
     if (paramName) {
       // check optional
-      if (paramName[0] === '[') {
+      if (paramName[0] === "[") {
         result.optional = true;
-        paramName = paramName.replace(/^[\[]/, '').replace(/[\]]$/, '');
+        paramName = paramName.replace(/^[\[]/, "").replace(/[\]]$/, "");
       } else {
         result.optional = false;
       }
 
       // check default value
-      const pair = paramName.split('=');
+      const pair = paramName.split("=");
       if (pair.length === 2) {
         result.defaultValue = pair[1];
         try {

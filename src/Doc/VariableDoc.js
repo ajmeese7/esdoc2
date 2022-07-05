@@ -1,4 +1,4 @@
-import AbstractDoc from './AbstractDoc.js';
+import AbstractDoc from "./AbstractDoc.js";
 
 /**
  * Doc Class from Variable Declaration AST node.
@@ -7,7 +7,7 @@ export default class VariableDoc extends AbstractDoc {
   /** specify ``variable`` to kind. */
   _$kind() {
     super._$kind();
-    this._value.kind = 'variable';
+    this._value.kind = "variable";
   }
 
   /** set name by using self node. */
@@ -16,15 +16,15 @@ export default class VariableDoc extends AbstractDoc {
 
     const type = this._node.declarations[0].id.type;
     switch (type) {
-      case 'Identifier':
+      case "Identifier":
         this._value.name = this._node.declarations[0].id.name;
         break;
-      case 'ObjectPattern':
+      case "ObjectPattern":
         // TODO: optimize for multi variables.
         // e.g. export const {a, b} = obj
         this._value.name = this._node.declarations[0].id.properties[0].key.name;
         break;
-      case 'ArrayPattern':
+      case "ArrayPattern":
         // TODO: optimize for multi variables.
         // e.g. export cont [a, b] = arr
         this._value.name = this._node.declarations[0].id.elements.find(v => v).name;

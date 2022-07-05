@@ -1,6 +1,6 @@
 {
   "name": "esdoc2",
-  "version": "2.1.6",
+  "version": "3.0.0",
   "description": "Better Documentation Generator For JavaScript",
   "contributors": [
     {
@@ -12,6 +12,11 @@
       "name": "Matt McFarland",
       "email": "contact@mattmcfarland.com",
       "url": "http://esdoc2.org"
+    },
+    {
+      "name": "Aaron Meese",
+      "email": "aaronjmeese@gmail.com",
+      "url": "http://aaronmeese.com"
     }
   ],
   "license": "MIT",
@@ -20,7 +25,7 @@
     "url": "https://github.com/esdoc2/esdoc2"
   },
   "engines": {
-    "node": ">= 6",
+    "node": ">= 8",
     "yarn": ">= 1"
   },
   "scripts": {
@@ -45,41 +50,38 @@
     "babel-generator": "^6.26.0",
     "babel-traverse": "^6.26.0",
     "babylon": "^6.18.0",
-    "big-json": "^1.2.0",
-    "cheerio": "^1.0.0-rc.2",
+    "big-json": "^3.1.0",
+    "cheerio": "^1.0.0-rc.12",
     "color-logger": "^0.0.6",
     "escape-html": "^1.0.3",
-    "fs-extra": "^4.0.2",
+    "fs-extra": "^10.1.0",
     "ice-cap": "^0.0.4",
-    "marked": "^0.6.2",
-    "minimist": "^1.2.0",
-    "mkdirp": "^0.5.1",
-    "npmlog": "^4.1.2",
+    "marked": "^04.0.17",
+    "minimist": "^1.2.6",
+    "mkdirp": "^1.0.4",
+    "npmlog": "^6.0.2",
     "taffydb": "^2.7.3"
   },
-  "resolutions": {
-    "marked": "^0.6.2"
-  },
   "devDependencies": {
-    "babel-cli": "6.26.0",
-    "babel-plugin-istanbul": "4.1.5",
-    "babel-plugin-transform-es2015-modules-commonjs": "6.26.0",
+    "babel-cli": "^6.26.0",
+    "babel-plugin-istanbul": "^6.1.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "babel-preset-es2015": "^6.24.1",
-    "babel-register": "6.26.0",
-    "codecov": "3.0.0",
-    "debug": "^3.1.0",
-    "esdoc2-accessor-plugin": "2.0.0",
-    "esdoc2-external-ecmascript-plugin": "2.0.0",
-    "esdoc2-importpath-plugin": "2.0.0",
-    "esdoc2-standard-plugin": "2.0.0",
-    "esdoc2-undocumented-identifier-plugin": "2.0.0",
-    "eslint": "4.11.0",
-    "js-yaml": "^3.10.0",
-    "jsonlint": "^1.6.2",
-    "mocha": "4.0.1",
-    "mocha-junit-reporter": "^1.15.0",
-    "node-static": "^0.7.10",
-    "nyc": "11.3.0"
+    "babel-register": "^6.26.0",
+    "codecov": "^3.8.3",
+    "debug": "^4.3.4",
+    "esdoc2-accessor-plugin": "^2.0.0",
+    "esdoc2-external-ecmascript-plugin": "^2.0.0",
+    "esdoc2-importpath-plugin": "^2.0.0",
+    "esdoc2-standard-plugin": "^2.0.0",
+    "esdoc2-undocumented-identifier-plugin": "^2.0.0",
+    "eslint": "^8.19.0",
+    "js-yaml": "^4.1.0",
+    "jsonlint": "^1.6.3",
+    "mocha": "^10.0.0",
+    "mocha-junit-reporter": "^2.0.2",
+    "node-static": "^0.7.11",
+    "nyc": "^15.1.0"
   },
   "keywords": [
     "jsdoc",

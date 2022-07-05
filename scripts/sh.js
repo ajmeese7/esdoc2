@@ -1,12 +1,12 @@
-const { removeSync, mkdirs, chmodSync, copySync } = require('fs-extra');
+const {removeSync, mkdirs, chmodSync, copySync} = require("fs-extra");
 const execSync = command => {
-  const path = require('path');
-  const childProcess = require('child_process');
+  const path = require("path");
+  const childProcess = require("child_process");
 
-  childProcess.execSync(command.replace(/\//g, path.sep), {stdio: 'inherit'});
-}
+  childProcess.execSync(command.replace(/\//g, path.sep), {stdio: "inherit"});
+};
 
-module.exports = (...commands) => commands.forEach(execSync)
+module.exports = (...commands) => commands.forEach(execSync);
 module.exports.rm = removeSync;
 module.exports.mkdir = mkdirs;
 module.exports.chmod = chmodSync;

@@ -1,4 +1,4 @@
-import {resolve} from 'path';
+import {resolve} from "path";
 
 /**
  * Node Package Manager(npm) util class.
@@ -11,10 +11,10 @@ export default class NPMUtil {
   static findPackage() {
     let packageObj = null;
     try {
-      const packageFilePath = resolve(__dirname, '../../package.json');
+      const packageFilePath = resolve(__dirname, "../../package.json");
       packageObj = require(packageFilePath);
     } catch (e) {
-      const packageFilePath = resolve(__dirname, '../../../package.json');
+      const packageFilePath = resolve(__dirname, "../../../package.json");
       packageObj = require(packageFilePath);
     }
 

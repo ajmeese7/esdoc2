@@ -1,6 +1,6 @@
-import log from 'npmlog';
-import AbstractDoc from './AbstractDoc.js';
-import ParamParser from '../Parser/ParamParser.js';
+import log from "npmlog";
+import AbstractDoc from "./AbstractDoc.js";
+import ParamParser from "../Parser/ParamParser.js";
 /**
  * Doc Class from virtual comment node of external.
  */
@@ -12,29 +12,29 @@ export default class ExternalDoc extends AbstractDoc {
   _apply() {
     super._apply();
 
-    Reflect.deleteProperty(this._value, 'export');
-    Reflect.deleteProperty(this._value, 'importPath');
-    Reflect.deleteProperty(this._value, 'importStyle');
+    Reflect.deleteProperty(this._value, "export");
+    Reflect.deleteProperty(this._value, "importPath");
+    Reflect.deleteProperty(this._value, "importStyle");
   }
 
   /** specify ``external`` to kind. */
   _$kind() {
     super._$kind();
-    this._value.kind = 'external';
+    this._value.kind = "external";
   }
 
   /** take out self name from tag */
   _$name() {
-    const value = this._findTagValue(['@external']);
+    const value = this._findTagValue(["@external"]);
     if (!value) {
-      log.warn('can not resolve name.');
+      log.warn("can not resolve name.");
     }
 
     this._value.name = value;
 
-    const tags = this._findAll(['@external']);
+    const tags = this._findAll(["@external"]);
     if (!tags) {
-      log.warn('can not resolve name.');
+      log.warn("can not resolve name.");
       return;
     }
 

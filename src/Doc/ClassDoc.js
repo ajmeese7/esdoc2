@@ -1,7 +1,7 @@
-import fs from 'fs-extra';
-import AbstractDoc from './AbstractDoc.js';
-import ParamParser from '../Parser/ParamParser.js';
-import NamingUtil from '../Util/NamingUtil.js';
+import fs from "fs-extra";
+import AbstractDoc from "./AbstractDoc.js";
+import ParamParser from "../Parser/ParamParser.js";
+import NamingUtil from "../Util/NamingUtil.js";
 
 /**
  * Doc Class from Class Declaration AST node.
@@ -22,7 +22,7 @@ export default class ClassDoc extends AbstractDoc {
   /** specify ``class`` to kind. */
   _$kind() {
     super._$kind();
-    this._value.kind = 'class';
+    this._value.kind = "class";
   }
 
   /** take out self name from self node */
@@ -44,9 +44,9 @@ export default class ClassDoc extends AbstractDoc {
 
   /** for @interface */
   _$interface() {
-    const tag = this._find(['@interface']);
+    const tag = this._find(["@interface"]);
     if (tag) {
-      this._value.interface = ['', 'true', true].includes(tag.tagValue);
+      this._value.interface = ["", "true", true].includes(tag.tagValue);
     } else {
       this._value.interface = false;
     }
@@ -54,7 +54,7 @@ export default class ClassDoc extends AbstractDoc {
 
   /** for @extends, does not need to use this tag. */
   _$extends() {
-    const values = this._findAllTagValues(['@extends', '@extend']);
+    const values = this._findAllTagValues(["@extends", "@extend"]);
     if (values) {
       this._value.extends = [];
       for (const value of values) {
@@ -69,7 +69,7 @@ export default class ClassDoc extends AbstractDoc {
       let longnames = [];
       const targets = [];
 
-      if (node.superClass.type === 'CallExpression') {
+      if (node.superClass.type === "CallExpression") {
         targets.push(node.superClass.callee, ...node.superClass.arguments);
       } else {
         targets.push(node.superClass);
@@ -78,21 +78,21 @@ export default class ClassDoc extends AbstractDoc {
       for (const target of targets) {
         /* eslint-disable default-case */
         switch (target.type) {
-          case 'Identifier':
+          case "Identifier":
             longnames.push(this._resolveLongname(target.name));
             break;
-          case 'MemberExpression': {
+          case "MemberExpression": {
             const fullIdentifier = this._flattenMemberExpression(target);
-            const rootIdentifier = fullIdentifier.split('.')[0];
+            const rootIdentifier = fullIdentifier.split(".")[0];
             const rootLongname = this._resolveLongname(rootIdentifier);
-            const filePath = rootLongname.replace(/~.*/, '');
+            const filePath = rootLongname.replace(/~.*/, "");
             longnames.push(`${filePath}~${fullIdentifier}`);
           }
             break;
         }
       }
 
-      if (node.superClass.type === 'CallExpression') {
+      if (node.superClass.type === "CallExpression") {
         // expression extends may have non-class, so filter only class by name rule.
         longnames = longnames.filter((v)=> v.match(/^[A-Z]|^[$_][A-Z]/));
 
@@ -109,7 +109,7 @@ export default class ClassDoc extends AbstractDoc {
 
   /** for @implements */
   _$implements() {
-    const values = this._findAllTagValues(['@implements', '@implement']);
+    const values = this._findAllTagValues(["@implements", "@implement"]);
     if (!values) return;
 
     this._value.implements = [];
@@ -130,12 +130,12 @@ export default class ClassDoc extends AbstractDoc {
    */
   _readSelection(filePath, line, startColumn, endColumn) {
     const code = fs.readFileSync(filePath).toString();
-    const lines = code.split('\n');
+    const lines = code.split("\n");
     const selectionLine = lines[line - 1];
     const tmp = [];
     for (let i = startColumn; i < endColumn; i++) {
       tmp.push(selectionLine.charAt(i));
     }
-    return tmp.join('');
+    return tmp.join("");
   }
 }

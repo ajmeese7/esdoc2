@@ -1,5 +1,5 @@
-import fs from 'fs';
-import AbstractDoc from './AbstractDoc.js';
+import fs from "fs";
+import AbstractDoc from "./AbstractDoc.js";
 
 /**
  * Doc Class from source file.
@@ -12,15 +12,15 @@ export default class FileDoc extends AbstractDoc {
   _apply() {
     super._apply();
 
-    Reflect.deleteProperty(this._value, 'export');
-    Reflect.deleteProperty(this._value, 'importPath');
-    Reflect.deleteProperty(this._value, 'importStyle');
+    Reflect.deleteProperty(this._value, "export");
+    Reflect.deleteProperty(this._value, "importPath");
+    Reflect.deleteProperty(this._value, "importStyle");
   }
 
   /** specify ``file`` to kind. */
   _$kind() {
     super._$kind();
-    this._value.kind = 'file';
+    this._value.kind = "file";
   }
 
   /** take out self name from file path */
@@ -39,7 +39,7 @@ export default class FileDoc extends AbstractDoc {
     super._$content();
 
     const filePath = this._pathResolver.fileFullPath;
-    const content = fs.readFileSync(filePath, {encode: 'utf8'}).toString();
+    const content = fs.readFileSync(filePath, {encode: "utf8"}).toString();
     this._value.content = content;
   }
 }
