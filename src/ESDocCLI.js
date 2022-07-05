@@ -76,6 +76,8 @@ export default class ESDocCLI {
     console.log("");
     console.log("esdoc2 finds configuration by the order:");
     console.log("  1. `-c your-esdoc.json`");
+    console.log("  2. `.esdoc2.json` in current directory");
+    console.log("  3. `.esdoc2.js` in current directory");
     console.log("  2. `.esdoc.json` in current directory");
     console.log("  3. `.esdoc.js` in current directory");
     console.log("  4. `esdoc` property in package.json");
@@ -102,6 +104,22 @@ export default class ESDocCLI {
   _findConfigFilePath() {
     if (this._argv.c) {
       return this._argv.c;
+    }
+
+    try {
+      const filePath = path.resolve("./.esdoc2.json");
+      fs.readFileSync(filePath);
+      return filePath;
+    } catch (e) {
+      // ignore
+    }
+
+    try {
+      const filePath = path.resolve("./.esdoc2.js");
+      fs.readFileSync(filePath);
+      return filePath;
+    } catch (e) {
+      // ignore
     }
 
     try {

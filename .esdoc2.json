@@ -2,7 +2,7 @@
   "source": "./src",
   "destination": "./out/docs",
   "excludes": ["Publisher/Builder/template/"],
-  "debug": false,
+  "debug": true,
   "index": "./README.md",
   "package": "./package.json",
   "plugins": [
@@ -22,8 +22,7 @@
             "./manual/config.md",
             "./manual/api.md",
             "./manual/faq.md",
-            "./manual/migration.md",
-            "./CHANGELOG.md"
+            "./manual/migration.md"
           ]
         }
       }
@@ -33,6 +32,9 @@
       "option": {
         "replaces": [{"from": "^src/", "to": "out/src/"}]
       }
+    },
+    {
+      "name": "esdoc2-publish-html-plugin"
     }
   ]
 }

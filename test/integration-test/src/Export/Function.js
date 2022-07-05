@@ -1,17 +1,17 @@
 // default export
-export default function testExportFunction1(){}
+export default function testExportFunction1() {}
 
 // named export
-export function testExportFunction2(){}
+export function testExportFunction2() {}
 
 // named export with expression
-export const testExportFunction3 = function(){};
+export const testExportFunction3 = function() {};
 
 // non export
-function testExportFunction4(){}
+function testExportFunction4() {}
 
 // non export with expression
-const testExportFunction5 = function(){};
+const testExportFunction5 = function() {};
 
 // indirect named export
 function testExportFunction6() {}

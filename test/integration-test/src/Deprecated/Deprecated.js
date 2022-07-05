@@ -13,13 +13,13 @@ export class TestDeprecatedClass {
   /**
    * @deprecated
    */
-  methodDeprecated(){}
+  methodDeprecated() {}
 }
 
 /**
  * @deprecated
  */
-export function testDeprecatedFunction(){}
+export function testDeprecatedFunction() {}
 
 /**
  * @deprecated

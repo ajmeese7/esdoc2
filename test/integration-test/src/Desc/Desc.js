@@ -15,23 +15,23 @@ export class TestDescClass {
   /**
    * this is methodDesc.
    */
-  methodDesc(){}
+  methodDesc() {}
 
   /**
    * this is getterDesc.
    */
-  get getterDesc(){}
+  get getterDesc() {}
 
   /**
    * this is setterDesc.
    */
-  set setterDesc(v){}
+  set setterDesc(v) {}
 }
 
 /**
  * this is testDescFunction.
  */
-export function testDescFunction(){}
+export function testDescFunction() {}
 
 /**
  * this is testDescVariable.

@@ -5,6 +5,7 @@ require("babel-core/register")({
   ],
   env: {coverage: {plugins: ["istanbul"]}}
 });
+
 const Mocha = require("mocha");
 const init = require("../test/init").default;
 const mocha = new Mocha();
@@ -24,7 +25,8 @@ init.then(() => {
   });
   mocha.run((failures) => {
     process.on("exit", () => {
-      process.exit(failures); // exit with non-zero status if there were failures
+      // exit with non-zero status if there were failures
+      process.exit(failures);
     });
   });
 });

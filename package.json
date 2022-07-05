@@ -34,18 +34,14 @@
     "build:docs": "scripts/build-docs.js",
     "test": "scripts/test.js $(find test/ -regex '.*.test.js$')",
     "test:ci": "nyc scripts/test.js $(find test/ -regex '.*.test.js$')",
-    "lint": "scripts/lint.js",
-    "lint:es": "eslint ./src ./test/src",
-    "lint:es:ci": "eslint ./src ./test/src --format junit --output-file ~/reports/eslint.xml",
+    "lint": "scripts/lint.js --fix",
+    "lint:es": "eslint ./src --fix",
+    "lint:es:ci": "eslint ./src --format junit --output-file ~/reports/eslint.xml --fix",
     "lint:json": "jsonlint ./package.json",
     "lint:yaml": "js-yaml ./circle.yml",
     "deploy-docs": "scripts/deploy-ghpages.sh",
     "prepublishOnly": "yarn build"
   },
-  "precommit": [
-    "lint",
-    "test"
-  ],
   "dependencies": {
     "babel-generator": "^6.26.0",
     "babel-traverse": "^6.26.0",
@@ -56,7 +52,7 @@
     "escape-html": "^1.0.3",
     "fs-extra": "^10.1.0",
     "ice-cap": "^0.0.4",
-    "marked": "^04.0.17",
+    "marked": "^4.0.17",
     "minimist": "^1.2.6",
     "mkdirp": "^1.0.4",
     "npmlog": "^6.0.2",
@@ -73,6 +69,7 @@
     "esdoc2-accessor-plugin": "^2.0.0",
     "esdoc2-external-ecmascript-plugin": "^2.0.0",
     "esdoc2-importpath-plugin": "^2.0.0",
+    "esdoc2-publish-html-plugin": "^2.1.2",
     "esdoc2-standard-plugin": "^2.0.0",
     "esdoc2-undocumented-identifier-plugin": "^2.0.0",
     "eslint": "^8.19.0",
@@ -85,9 +82,9 @@
   },
   "keywords": [
     "jsdoc",
+    "esdoc",
     "esdoc2",
     "api",
-    "document",
     "documentation",
     "ES6"
   ],
@@ -100,7 +97,7 @@
     "doc": "manual",
     "lib": "src"
   },
-  "main": "out/src/esdoc2.js",
+  "main": "out/src/ESDoc.js",
   "bin": {
     "esdoc2": "out/src/ESDocCLI.js"
   }

@@ -4,7 +4,7 @@ export default class TestProperty {
    * @property {number} x1
    * @property {TestPropertyInner} x2
    */
-  methodProperty(){
+  methodProperty() {
     return {};
   }
 }

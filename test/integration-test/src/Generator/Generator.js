@@ -1,5 +1,5 @@
 export default class TestGeneratorClass {
-  *methodGenerator(){}
+  *methodGenerator() {}
 }
 
-export function *testGeneratorFunction(){}
+export function *testGeneratorFunction() {}

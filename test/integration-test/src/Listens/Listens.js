@@ -3,7 +3,7 @@ export default class TestListensClass {
    * @listens {TestListensEvent1}
    * @listens {TestListensEvent2} listens TestListensEvent2
    */
-  methodListens(){}
+  methodListens() {}
 }
 
 export class TestListensEvent1 {}

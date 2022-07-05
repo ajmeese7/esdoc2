@@ -5,14 +5,14 @@ import path from "path";
  */
 class Plugin {
   /**
-   * create instance.
+   * Create instance.
    */
   constructor() {
     this._plugins = null;
   }
 
   /**
-   * initialize with plugin property.
+   * Initialize with plugin property.
    * @param {Array<{name: string, option: object}>} plugins - expect config.plugins property.
    */
   init(plugins = []) {
@@ -55,7 +55,7 @@ class Plugin {
   }
 
   /**
-   * handle start.
+   * Handle start.
    */
   onStart() {
     const ev = new PluginEvent();
@@ -63,7 +63,7 @@ class Plugin {
   }
 
   /**
-   * handle config.
+   * Handle config.
    * @param {ESDocConfig} config - original esdoc2 config.
    * @returns {ESDocConfig} handled config.
    */
@@ -74,7 +74,7 @@ class Plugin {
   }
 
   /**
-   * handle code.
+   * Handle code.
    * @param {string} code - original code.
    * @param {string} filePath - source code file path.
    * @returns {string} handled code.
@@ -87,7 +87,7 @@ class Plugin {
   }
 
   /**
-   * handle code parser.
+   * Handle code parser.
    * @param {function(code: string)} parser - original js parser.
    * @param {object} parserOption - default babylon options.
    * @param {string} filePath - source code file path.
@@ -102,7 +102,7 @@ class Plugin {
   }
 
   /**
-   * handle AST.
+   * Handle AST.
    * @param {AST} ast - original ast.
    * @param {string} filePath - source code file path.
    * @param {string} code - original code.
@@ -117,7 +117,7 @@ class Plugin {
   }
 
   /**
-   * handle docs.
+   * Handle docs.
    * @param {Object[]} docs - docs.
    * @returns {Object[]} handled docs.
    */
@@ -128,7 +128,7 @@ class Plugin {
   }
 
   /**
-   * handle publish
+   * Handle publish.
    * @param {function(filePath: string, content: string)} writeFile - write content.
    * @param {function(srcPath: string, destPath: string)} copyDir - copy directory.
    * @param {function(filePath: string):string} readFile - read content.
@@ -146,7 +146,7 @@ class Plugin {
   }
 
   /**
-   * handle content.
+   * Handle content.
    * @param {string} content - original content.
    * @param {string} fileName - the fileName of the HTML file.
    * @returns {string} handled HTML.
@@ -158,7 +158,7 @@ class Plugin {
   }
 
   /**
-   * handle complete
+   * Handle complete.
    */
   onComplete() {
     const ev = new PluginEvent();
@@ -171,7 +171,7 @@ class Plugin {
  */
 export class PluginEvent {
   /**
-   * create instance.
+   * Create instance.
    * @param {Object} data - event content.
    */
   constructor(data = {}) {

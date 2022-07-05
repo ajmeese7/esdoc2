@@ -4,7 +4,7 @@ export class TestDuplication {
     this.member = 1;
 
     /** @type {string} */
-    this.member = 'b';
+    this.member = "b";
 
     /** @type {boolean} */
     this.member = true;

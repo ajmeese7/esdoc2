@@ -5,7 +5,17 @@
   "index": "./test/integration-test/README.md",
   "package": "./test/integration-test/package.json",
   "plugins": [
-    {"name": "./test/integration-test/plugin/MyPlugin1.js", "option": {"enable": true}},
-    {"name": "./test/integration-test/plugin/MyPlugin2.js", "option": {"enable": true}}
+    {
+      "name": "./test/integration-test/plugin/MyPlugin1.js",
+      "option": {
+        "enable": true
+      }
+    },
+    {
+      "name": "./test/integration-test/plugin/MyPlugin2.js",
+      "option": {
+        "enable": true
+      }
+    }
   ]
 }

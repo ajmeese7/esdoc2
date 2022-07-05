@@ -5,5 +5,5 @@ export default class TestExperimental {
   /**
    * @experimental
    */
-  methodExperimental(){}
+  methodExperimental() {}
 }

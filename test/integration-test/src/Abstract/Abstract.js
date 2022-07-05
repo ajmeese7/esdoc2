@@ -2,5 +2,5 @@ export class TestAbstract {
   /**
    * @abstract
    */
-  methodAbstract(){}
+  methodAbstract() {}
 }

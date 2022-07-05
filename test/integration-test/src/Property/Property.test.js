@@ -1,25 +1,25 @@
-import assert from 'assert';
-import {find} from '../../util';
+import assert from "assert";
+import {find} from "../../util";
 
-describe('test/Property/Property:', ()=>{
-  it('has property', ()=>{
-    const doc = find('longname', 'src/Property/Property.js~TestProperty#methodProperty');
+describe("test/Property/Property:", () => {
+  it("has property", () => {
+    const doc = find("longname", "src/Property/Property.js~TestProperty#methodProperty");
     assert.deepEqual(doc.properties, [
       {
         nullable: null,
-        types: ['number'],
+        types: ["number"],
         spread: false,
         optional: false,
-        name: 'x1',
-        description: ''
+        name: "x1",
+        description: ""
       },
       {
         nullable: null,
-        types: ['TestPropertyInner'],
+        types: ["TestPropertyInner"],
         spread: false,
         optional: false,
-        name: 'x2',
-        description: ''
+        name: "x2",
+        description: ""
       }
     ]);
   });

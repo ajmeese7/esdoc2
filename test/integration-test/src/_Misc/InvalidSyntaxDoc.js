@@ -1,4 +1,4 @@
 /**
  * @param {} p
  */
-function testInvalidCodeSyntax(p){}
+function testInvalidCodeSyntax(p) {}

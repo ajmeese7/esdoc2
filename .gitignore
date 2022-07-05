@@ -6,3 +6,4 @@ out
 /test/fixture/dest
 /.nyc_output/
 .npmrc
+gh-pages-branch

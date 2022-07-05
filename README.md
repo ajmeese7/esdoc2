@@ -39,9 +39,6 @@ open ./docs/index.html
 ## Documentation
 Please visit [esdoc2.org](http://esdoc2.org) to see more documentation.
 
-## License
-MIT
-
 ## Acknolwedgements
 
 - Ryo Maruyama, author of ESDoc

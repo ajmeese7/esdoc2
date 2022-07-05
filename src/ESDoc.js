@@ -51,7 +51,7 @@ export default class ESDoc {
           packageName = packageConfig.name;
           mainFilePath = packageConfig.main;
         } catch (e) {
-        // ignore
+          // ignore
         }
       }
 
@@ -118,7 +118,10 @@ export default class ESDoc {
         const temp = this._traverse(config.source, filePath, packageName, mainFilePath);
         if (!temp) return;
         results.push(...temp.results);
-        stringifyWriteTransform.write({filePath: `source${path.sep}${relativeFilePath}`, ast: temp.ast});
+        stringifyWriteTransform.write({
+          filePath: `source${path.sep}${relativeFilePath}`,
+          ast: temp.ast
+        });
       });
 
       stringifyWriteTransform.end();
@@ -146,7 +149,7 @@ export default class ESDoc {
   }
 
   /**
-   * check esdoc2 config. and if it is old, exit with warning message.
+   * Check esdoc2 config, exiting with warning message if it is old.
    * @param {ESDocConfig} config - check config
    * @private
    */
@@ -172,7 +175,7 @@ export default class ESDoc {
 
     for (const [key, plugin] of keys) {
       if (key in config) {
-        console.error(`[31merror: config.${key} is invalid. Please use ${plugin}. how to migration: https://esdoc2.org/manual/migration.html[0m`);
+        console.error(`[31merror: config.${key} is invalid. Please use ${plugin}. For info on how to migrate, see: https://esdoc2.org/manual/migration.html[0m`);
         exit = true;
       }
     }
@@ -181,7 +184,7 @@ export default class ESDoc {
   }
 
   /**
-   * set default config to specified config.
+   * Set default config to specified config.
    * @param {ESDocConfig} config - specified config.
    * @private
    */
@@ -217,7 +220,7 @@ export default class ESDoc {
   }
 
   /**
-   * traverse doc comment in JavaScript file.
+   * Traverse doc comment in JavaScript file.
    * @param {string} inDirPath - root directory path.
    * @param {string} filePath - target JavaScript file path.
    * @param {string} [packageName] - npm package name of target.
@@ -253,7 +256,7 @@ export default class ESDoc {
   }
 
   /**
-   * generate index doc
+   * Generate index doc
    * @param {ESDocConfig} config
    * @returns {Tag}
    * @private
@@ -273,7 +276,7 @@ export default class ESDoc {
   }
 
   /**
-   * generate package doc
+   * Generate package doc
    * @param {ESDocConfig} config
    * @returns {Tag}
    * @private
@@ -301,7 +304,7 @@ export default class ESDoc {
   }
 
   /**
-   * resolve duplication docs
+   * Resolves duplication docs
    * @param {Tag[]} docs
    * @returns {Tag[]}
    * @private
@@ -335,7 +338,7 @@ export default class ESDoc {
   }
 
   /**
-   * publish content
+   * Publish content
    * @param {ESDocConfig} config
    * @private
    */
@@ -368,8 +371,8 @@ export default class ESDoc {
   }
 
   /**
-   * show memory usage stat
-   * @return {undefined} no return
+   * Show memory usage statistics.
+   * @private
    */
   static _memUsage() {
     const used = process.memoryUsage();

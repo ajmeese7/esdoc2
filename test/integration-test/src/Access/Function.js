@@ -1,14 +1,14 @@
 /**
  * @public
  */
-export default function testAccessFunctionPublic(){}
+export default function testAccessFunctionPublic() {}
 
 /**
  * @protected
  */
-export function testAccessFunctionProtected(){}
+export function testAccessFunctionProtected() {}
 
 /**
  * @private
  */
-export function testAccessFunctionPrivate(){}
+export function testAccessFunctionPrivate() {}

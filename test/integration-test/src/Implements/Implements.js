@@ -1,4 +1,4 @@
-import TestInterfaceOuter from './Foo/Bar';
+import TestInterfaceOuter from "./Foo/Bar";
 
 /**
  * @implements {TestInterfaceInner}

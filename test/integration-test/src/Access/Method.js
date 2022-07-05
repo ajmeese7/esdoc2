@@ -2,15 +2,15 @@ export default class TestAccessMethod {
   /**
    * @public
    */
-  methodPublic(){}
+  methodPublic() {}
 
   /**
    * @protected
    */
-  methodProtected(){}
+  methodProtected() {}
 
   /**
    * @private
    */
-  methodPrivate(){}
+  methodPrivate() {}
 }

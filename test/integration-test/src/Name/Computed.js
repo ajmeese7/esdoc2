@@ -1,5 +1,5 @@
 export default class TestNameComputed {
-  constructor(){
+  constructor() {
     this[foo.bar] = 123;
   }
 

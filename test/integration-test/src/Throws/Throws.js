@@ -3,7 +3,7 @@ export default class TestThrows {
    * @throws {TestThrowsError1}
    * @throws {TestThrowsError2} throws error
    */
-  methodThrows(){}
+  methodThrows() {}
 }
 
 export class TestThrowsError1 {}
