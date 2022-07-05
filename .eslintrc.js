@@ -1,4 +1,3 @@
-// this rule is ESLint v3.5.0
 module.exports = {
   env: {
     node: true,
@@ -59,7 +58,7 @@ module.exports = {
     'no-caller': ['error'],
     'no-case-declarations': ['error'],
     'no-div-regex': ['error'],
-    'no-else-return': ['off'], // because I do not like this rule.
+    'no-else-return': ['off'],
     'no-empty-function': ['off'], // because abstract method should be empty body.
     'no-empty-pattern': ['error'],
     'no-eq-null': ['error'],
@@ -162,7 +161,7 @@ module.exports = {
     'keyword-spacing': ['error', {'before': true, 'after': true}],
     'line-comment-position': ['off'], // because write comment at above and beside.
     'linebreak-style': ['error', 'unix'],
-    'lines-around-comment': ['off', {'beforeBlockComment': true, 'allowBlockStart': true}], // because do not care this.
+    'lines-around-comment': ['off', {'beforeBlockComment': true, 'allowBlockStart': true}],
     'lines-around-directive': ['error', 'always'],
     'max-depth': ['error', {'max': 4}],
     'max-len': ['error', {code: 160, 'ignoreStrings': true, 'ignoreUrls': true, 'ignoreComments': true, 'ignoreTemplateLiterals': true}],
@@ -174,8 +173,8 @@ module.exports = {
     'multiline-ternary': ['error', 'never'],
     'new-cap': ['error', {'newIsCap': true, 'capIsNew': true, 'properties': true}],
     'new-parens': ['error'],
-    'newline-after-var': ['off', 'always'], // because do not care this.
-    'newline-before-return': ['off'], // because do not care this.
+    'newline-after-var': ['off', 'always'],
+    'newline-before-return': ['off'],
     'newline-per-chained-call': ['error', {'ignoreChainWithDepth': 3}],
     'no-array-constructor': ['error'],
     'no-bitwise': ['error'],
@@ -189,7 +188,7 @@ module.exports = {
     'no-nested-ternary': ['error'],
     'no-new-object': ['error'],
     'no-plusplus': ['off', {'allowForLoopAfterthoughts': true}], // because use ++/--.
-    'no-restricted-syntax': ['off'], // because enough other rules.
+    'no-restricted-syntax': ['off'],
     'no-tabs': ['error'],
     'no-ternary': ['off'], // because often use ternary.
     'no-trailing-spaces': ['error', {'skipBlankLines': true}],
@@ -209,8 +208,8 @@ module.exports = {
     'quotes': ['error', 'single', {avoidEscape: true, allowTemplateLiterals: true }],
     'semi': ['error', 'always'],
     'semi-spacing': ['error', {'before': false, 'after': true}],
-    'sort-keys': ['off'], // because do not care this.
-    'sort-vars': ['off'],  // because do not care this.
+    'sort-keys': ['off'],
+    'sort-vars': ['off'],
     'space-before-blocks': ['error', 'always'],
     'space-before-function-paren': ['error', 'never'],
     'space-in-parens': ['error', 'never'],
@@ -218,7 +217,7 @@ module.exports = {
     'space-unary-ops': ['error'],
     'spaced-comment': ['error'],
     'unicode-bom': ['error', 'never'],
-    'wrap-regex': ['off'], // because do not care this.
+    'wrap-regex': ['off'],
 
     /* ESMAScript 2015 */
     'arrow-body-style': ['off', 'as-needed'], // considering
@@ -232,7 +231,7 @@ module.exports = {
     'no-dupe-class-members': ['error'],
     'no-duplicate-imports': ['error'],
     'no-new-symbol': ['error'],
-    'no-restricted-imports': ['off'], // because too strict.
+    'no-restricted-imports': ['off'],
     'no-this-before-super': ['error'],
     'no-useless-computed-key': ['error'],
     'no-useless-constructor': ['error'],
@@ -248,7 +247,7 @@ module.exports = {
     'prefer-template': ['error'],
     'require-yield': ['error'],
     'rest-spread-spacing': ['error', 'never'],
-    'sort-imports': ['off'], // because do not care this.
+    'sort-imports': ['off'],
     'symbol-description': ['error'],
     'template-curly-spacing': ['error', 'never'],
     'yield-star-spacing': ['error', {'before': false, 'after': true}],

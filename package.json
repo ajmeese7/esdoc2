@@ -42,23 +42,23 @@
     "test"
   ],
   "dependencies": {
-    "babel-generator": "~6.26.0",
-    "babel-traverse": "~6.26.0",
-    "babylon": "~6.18.0",
-    "big-json": "~1.2.0",
-    "cheerio": "~1.0.0-rc.2",
-    "color-logger": "~0.0.6",
-    "escape-html": "~1.0.3",
-    "fs-extra": "~4.0.2",
-    "ice-cap": "~0.0.4",
-    "marked": "~0.6.2",
-    "minimist": "~1.2.0",
-    "mkdirp": "~0.5.1",
-    "npmlog": "~4.1.2",
-    "taffydb": "~2.7.3"
+    "babel-generator": "^6.26.0",
+    "babel-traverse": "^6.26.0",
+    "babylon": "^6.18.0",
+    "big-json": "^1.2.0",
+    "cheerio": "^1.0.0-rc.2",
+    "color-logger": "^0.0.6",
+    "escape-html": "^1.0.3",
+    "fs-extra": "^4.0.2",
+    "ice-cap": "^0.0.4",
+    "marked": "^0.6.2",
+    "minimist": "^1.2.0",
+    "mkdirp": "^0.5.1",
+    "npmlog": "^4.1.2",
+    "taffydb": "^2.7.3"
   },
   "resolutions": {
-    "marked": "~0.6.2"
+    "marked": "^0.6.2"
   },
   "devDependencies": {
     "babel-cli": "6.26.0",
@@ -79,8 +79,7 @@
     "mocha": "4.0.1",
     "mocha-junit-reporter": "^1.15.0",
     "node-static": "^0.7.10",
-    "nyc": "11.3.0",
-    "pre-commit": "^1.2.2"
+    "nyc": "11.3.0"
   },
   "keywords": [
     "jsdoc",
