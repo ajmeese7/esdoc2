@@ -9,7 +9,7 @@
  */
 export default class CommentParser {
   /**
-   * parse comment to tags.
+   * Parse comment to tags.
    * @param {ASTNode} commentNode - comment node.
    * @param {string} commentNode.value - comment body.
    * @param {string} commentNode.type - CommentBlock or CommentLine.
@@ -58,12 +58,12 @@ export default class CommentParser {
   }
 
   /**
-   * parse node to tags.
+   * Parse node to tags.
    * @param {ASTNode} node - node.
    * @returns {{tags: Tag[], commentNode: CommentNode}} parsed comment.
    */
   static parseFromNode(node) {
-    if (!node.leadingComments) node.leadingComments = [{type: "CommentBlock", value: ""}];
+    if (!node.leadingComments) node.leadingComments = [{ type: "CommentBlock", value: "" }];
     const commentNode = node.leadingComments[node.leadingComments.length - 1];
     const tags = this.parse(commentNode);
 
@@ -71,7 +71,7 @@ export default class CommentParser {
   }
 
   /**
-   * judge doc comment or not.
+   * Judge whether or not comment is a doc comment.
    * @param {ASTNode} commentNode - comment node.
    * @returns {boolean} if true, this comment node is doc comment.
    */
@@ -81,7 +81,7 @@ export default class CommentParser {
   }
 
   /**
-   * build comment from tags
+   * Build comment from tags.
    * @param {Tag[]} tags
    * @returns {string} block comment value.
    */

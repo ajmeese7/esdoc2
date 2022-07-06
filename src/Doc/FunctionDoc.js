@@ -6,13 +6,13 @@ import NamingUtil from "../Util/NamingUtil.js";
  * Doc Class from Function declaration AST node.
  */
 export default class FunctionDoc extends AbstractDoc {
-  /** specify ``function`` to kind. */
+  /** Specify ``function`` to kind. */
   _$kind() {
     super._$kind();
     this._value.kind = "function";
   }
 
-  /** take out self name from self node */
+  /** Take out self name from self node */
   _$name() {
     super._$name();
 
@@ -29,20 +29,20 @@ export default class FunctionDoc extends AbstractDoc {
     }
   }
 
-  /** take out self name from file path */
+  /** Take out self name from file path */
   _$memberof() {
     super._$memberof();
     this._value.memberof = this._pathResolver.filePath;
   }
 
-  /** check generator property in self node */
+  /** Check generator property in self node */
   _$generator() {
     super._$generator();
     this._value.generator = this._node.generator;
   }
 
   /**
-   * use async property of self node.
+   * Use async property of self node.
    */
   _$async() {
     super._$async();

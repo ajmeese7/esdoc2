@@ -5,8 +5,8 @@ import babelTraverse from "babel-traverse";
  */
 export default class ASTUtil {
   /**
-   * sanitize node.
-   * change node type to `Identifier` and empty comment.
+   * Sanitize node.
+   * Change node type to `Identifier` and empty comment.
    * @param {ASTNode} node - target node.
    */
   static sanitize(node) {
@@ -18,7 +18,7 @@ export default class ASTUtil {
   }
 
   /**
-   * traverse ast nodes.
+   * Rraverse AST nodes.
    * @param {AST} ast - target AST.
    * @param {function(node: Object, parent: Object, path: Object)} callback - this is called with each node.
    */
@@ -32,7 +32,7 @@ export default class ASTUtil {
   }
 
   /**
-   * find file path in import declaration by name.
+   * Find file path in import declaration by name.
    * e.g. can find ``./foo/bar.js`` from ``import Bar from './foo/bar.js'`` by ``Bar``.
    * @param {AST} ast - target AST.
    * @param {string} name - identifier name.
@@ -61,7 +61,7 @@ export default class ASTUtil {
   }
 
   /**
-   * find VariableDeclaration node which has NewExpression.
+   * Find VariableDeclaration node which has NewExpression.
    * @param {string} name - variable name.
    * @param {AST} ast - find in this ast.
    * @returns {ASTNode|null} found ast node.
@@ -82,19 +82,30 @@ export default class ASTUtil {
   }
 
   /**
-   * find ClassDeclaration node.
+   * Find ClassDeclaration node.
    * @param {string} name - class name.
    * @param {AST} ast - find in this ast.
    * @returns {{classNode: ASTNode|null, exported: boolean|null}} found ast node.
    */
   static findClassDeclarationNode(name, ast) {
-    if (!name) return {classNode: null, exported: null};
+    if (!name) return { classNode: null, exported: null };
 
     for (const node of ast.program.body) {
-      if (node.type === "ClassDeclaration" && node.id.name === name) return {classNode: node, exported: false};
+      if (
+        node.type === "ClassDeclaration" &&
+        node.id.name === name
+      ) return { classNode: node, exported: false };
 
-      if (node.type === "ExportDefaultDeclaration" || node.type === "ExportNamedDeclaration") {
-        if (node.declaration && node.declaration.type === "ClassDeclaration" && node.declaration.id && node.declaration.id.name === name) return {classNode: node, exported: true};
+      if (
+        node.type === "ExportDefaultDeclaration" ||
+        node.type === "ExportNamedDeclaration"
+      ) {
+        if (
+          node.declaration &&
+          node.declaration.type === "ClassDeclaration" &&
+          node.declaration.id &&
+          node.declaration.id.name === name
+        ) return { classNode: node, exported: true };
       }
     }
 
@@ -102,7 +113,7 @@ export default class ASTUtil {
   }
 
   /**
-   * find FunctionDeclaration node.
+   * Find FunctionDeclaration node.
    * @param {string} name - function name.
    * @param {AST} ast - find in this ast.
    * @returns {ASTNode|null} found ast node.
@@ -118,7 +129,7 @@ export default class ASTUtil {
   }
 
   /**
-   * find VariableDeclaration node.
+   * Find VariableDeclaration node.
    * @param {string} name - variable name.
    * @param {AST} ast - find in this ast.
    * @returns {ASTNode|null} found ast node.
@@ -134,14 +145,14 @@ export default class ASTUtil {
   }
 
   /**
-   * create VariableDeclaration node which has NewExpression.
+   * Create VariableDeclaration node which has NewExpression.
    * @param {string} name - variable name.
    * @param {string} className - class name.
    * @param {Object} loc - location.
    * @returns {ASTNode} created node.
    */
   static createVariableDeclarationAndNewExpressionNode(name, className, loc) {
-    const node = {
+    return {
       type: "VariableDeclaration",
       kind: "let",
       loc: loc,
@@ -153,8 +164,6 @@ export default class ASTUtil {
         }
       ]
     };
-
-    return node;
   }
 
   // /**

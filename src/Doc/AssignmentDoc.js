@@ -5,7 +5,7 @@ import AbstractDoc from "./AbstractDoc.js";
  */
 export default class AssignmentDoc extends AbstractDoc {
   /**
-   * specify ``variable`` to kind.
+   * Specify ``variable`` to kind.
    */
   _$kind() {
     super._$kind();
@@ -13,7 +13,7 @@ export default class AssignmentDoc extends AbstractDoc {
   }
 
   /**
-   * take out self name from self node.
+   * Take out self name from self node.
    */
   _$name() {
     super._$name();
@@ -22,7 +22,7 @@ export default class AssignmentDoc extends AbstractDoc {
   }
 
   /**
-   * take out self memberof from file path.
+   * Take out self memberof from file path.
    */
   _$memberof() {
     super._$memberof();

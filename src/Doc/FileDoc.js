@@ -6,7 +6,7 @@ import AbstractDoc from "./AbstractDoc.js";
  */
 export default class FileDoc extends AbstractDoc {
   /**
-   * apply own tag.
+   * Apply own tag.
    * @private
    */
   _apply() {
@@ -17,24 +17,24 @@ export default class FileDoc extends AbstractDoc {
     Reflect.deleteProperty(this._value, "importStyle");
   }
 
-  /** specify ``file`` to kind. */
+  /** Specify ``file`` to kind. */
   _$kind() {
     super._$kind();
     this._value.kind = "file";
   }
 
-  /** take out self name from file path */
+  /** Take out self name from file path */
   _$name() {
     super._$name();
     this._value.name = this._pathResolver.filePath;
   }
 
-  /** specify name to longname */
+  /** Specify name to longname */
   _$longname() {
     this._value.longname = this._pathResolver.fileFullPath;
   }
 
-  /** specify file content to value.content */
+  /** Specify file content to value.content */
   _$content() {
     super._$content();
 

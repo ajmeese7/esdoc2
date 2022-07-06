@@ -30,7 +30,10 @@
     {
       "name": "esdoc2-importpath-plugin",
       "option": {
-        "replaces": [{"from": "^src/", "to": "out/src/"}]
+        "replaces": [{
+          "from": "^src/",
+          "to": "out/src/"
+        }]
       }
     },
     {

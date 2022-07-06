@@ -7,7 +7,7 @@ import ParamParser from "../Parser/ParamParser.js";
  */
 export default class TypedefDoc extends AbstractDoc {
   /**
-   * apply own tag.
+   * Apply own tag.
    * @private
    */
   _apply() {
@@ -20,13 +20,13 @@ export default class TypedefDoc extends AbstractDoc {
     Reflect.deleteProperty(this._value, "importStyle");
   }
 
-  /** specify ``typedef`` to kind. */
+  /** Specify ``typedef`` to kind. */
   _$kind() {
     super._$kind();
     this._value.kind = "typedef";
   }
 
-  /** set name by using tag. */
+  /** Set name by using tag. */
   _$name() {
     const tags = this._findAll(["@typedef"]);
     if (!tags) {
@@ -43,7 +43,7 @@ export default class TypedefDoc extends AbstractDoc {
     this._value.name = name;
   }
 
-  /** set memberof by using file path. */
+  /** Set memberof by using file path. */
   _$memberof() {
     super._$memberof();
 
@@ -61,7 +61,7 @@ export default class TypedefDoc extends AbstractDoc {
     this._value.memberof = this._pathResolver.filePath;
   }
 
-  /** for @typedef */
+  /** For @typedef */
   _$typedef() {
     const value = this._findTagValue(["@typedef"]);
     if (!value) return;

@@ -31,7 +31,7 @@ export default class DocFactory {
   }
 
   /**
-   * create instance.
+   * Create instance.
    * @param {AST} ast - AST of source code.
    * @param {PathResolver} pathResolver - path resolver of source code.
    */
@@ -56,7 +56,7 @@ export default class DocFactory {
   }
 
   /**
-   * inspect ExportDefaultDeclaration.
+   * Inspect ExportDefaultDeclaration.
    *
    * case1: separated export
    *
@@ -167,7 +167,7 @@ export default class DocFactory {
 
   /* eslint-disable max-statements */
   /**
-   * inspect ExportNamedDeclaration.
+   * Inspect ExportNamedDeclaration.
    *
    * case1: separated export
    *
@@ -269,7 +269,7 @@ export default class DocFactory {
   }
 
   /**
-   * push node, and factory processes node.
+   * Push node and factory processes node.
    * @param {ASTNode} node - target node.
    * @param {ASTNode} parentNode - parent node of target node.
    */
@@ -312,7 +312,7 @@ export default class DocFactory {
   }
 
   /**
-   * traverse comments of node, and create doc object.
+   * Traverse comments of node and create doc object.
    * @param {ASTNode|AST} parentNode - parent of target node.
    * @param {?ASTNode} node - target node.
    * @param {ASTNode[]} comments - comment nodes.
@@ -361,7 +361,7 @@ export default class DocFactory {
   }
 
   /**
-   * create Doc.
+   * Create Doc.
    * @param {ASTNode} node - target node.
    * @param {Tag[]} tags - tags of target node.
    * @returns {AbstractDoc} created Doc.
@@ -401,7 +401,7 @@ export default class DocFactory {
   }
 
   /**
-   * decide Doc type by using tags and node.
+   * Decide Doc type by using tags and node.
    * @param {Tag[]} tags - tags of node.
    * @param {ASTNode} node - target node.
    * @returns {{type: ?string, node: ?ASTNode}} decided type.
@@ -448,7 +448,7 @@ export default class DocFactory {
   }
 
   /**
-   * decide Doc type from class declaration node.
+   * Decide Doc type from class declaration node.
    * @param {ASTNode} node - target node that is class declaration node.
    * @returns {{type: string, node: ASTNode}} decided type.
    * @private
@@ -460,7 +460,7 @@ export default class DocFactory {
   }
 
   /**
-   * decide Doc type from method definition node.
+   * Decide Doc type from method definition node.
    * @param {ASTNode} node - target node that is method definition node.
    * @returns {{type: ?string, node: ?ASTNode}} decided type.
    * @private
@@ -476,7 +476,7 @@ export default class DocFactory {
   }
 
   /**
-   * decide Doc type from class property node.
+   * Decide Doc type from class property node.
    * @param {ASTNode} node - target node that is classs property node.
    * @returns {{type: ?string, node: ?ASTNode}} decided type.
    * @private
@@ -492,7 +492,7 @@ export default class DocFactory {
   }
 
   /**
-   * decide Doc type from function declaration node.
+   * Decide Doc type from function declaration node.
    * @param {ASTNode} node - target node that is function declaration node.
    * @returns {{type: string, node: ASTNode}} decided type.
    * @private
@@ -504,10 +504,10 @@ export default class DocFactory {
   }
 
   /**
-   * decide Doc type from function expression node.
-   * babylon 6.11.2 judges`export default async function foo(){}` to be `FunctionExpression`.
-   * I expect `FunctionDeclaration`. this behavior may be bug of babylon.
-   * for now, workaround for it with this method.
+   * Decide Doc type from function expression node.
+   * Babylon 6.11.2 judges `export default async function foo(){}` to be `FunctionExpression`.
+   * I expect `FunctionDeclaration`. this behavior may be bug of Babylon.
+   * For now, work around for it with this method.
    * @param {ASTNode} node - target node that is function expression node.
    * @returns {{type: string, node: ASTNode}} decided type.
    * @private
@@ -521,7 +521,7 @@ export default class DocFactory {
   }
 
   /**
-   * decide Doc type from arrow function expression node.
+   * Decide Doc type from arrow function expression node.
    * @param {ASTNode} node - target node that is arrow function expression node.
    * @returns {{type: string, node: ASTNode}} decided type.
    * @private
@@ -533,7 +533,7 @@ export default class DocFactory {
   }
 
   /**
-   * decide Doc type from expression statement node.
+   * Decide Doc type from expression statement node.
    * @param {ASTNode} node - target node that is expression statement node.
    * @returns {{type: ?string, node: ?ASTNode}} decided type.
    * @private
@@ -582,7 +582,7 @@ export default class DocFactory {
   }
 
   /**
-   * decide Doc type from variable node.
+   * Decide Doc type from variable node.
    * @param {ASTNode} node - target node that is variable node.
    * @returns {{type: string, node: ASTNode}} decided type.
    * @private
@@ -618,7 +618,7 @@ export default class DocFactory {
   }
 
   /**
-   * decide Doc type from assignment node.
+   * Decide Doc type from assignment node.
    * @param {ASTNode} node - target node that is assignment node.
    * @returns {{type: string, node: ASTNode}} decided type.
    * @private
@@ -650,7 +650,7 @@ export default class DocFactory {
   }
 
   /**
-   * unwrap exported node.
+   * Unwrap exported node.
    * @param {ASTNode} node - target node that is export declaration node.
    * @returns {ASTNode|null} unwrapped child node of exported node.
    * @private
@@ -670,7 +670,7 @@ export default class DocFactory {
   }
 
   /**
-   * judge node is last in parent.
+   * Judge node is last in parent.
    * @param {ASTNode} node - target node.
    * @param {ASTNode} parentNode - target parent node.
    * @returns {boolean} if true, the node is last in parent.
@@ -686,7 +686,7 @@ export default class DocFactory {
   }
 
   /**
-   * judge node is top in body.
+   * Judge node is top in body.
    * @param {ASTNode} node - target node.
    * @param {ASTNode[]} body - target body node.
    * @returns {boolean} if true, the node is top in body.
@@ -708,7 +708,7 @@ export default class DocFactory {
   }
 
   /**
-   * deep copy object.
+   * Deep copy object.
    * @param {Object} obj - target object.
    * @return {Object} copied object.
    * @private
@@ -718,7 +718,7 @@ export default class DocFactory {
   }
 
   /**
-   * find node while goes up.
+   * Find node while goes up.
    * @param {ASTNode} node - start node.
    * @param {string[]} types - ASTNode types.
    * @returns {ASTNode|null} found first node.

@@ -32,7 +32,7 @@ esdoc2 is inspired by JSDoc.
   - has many flexible document tags
 
 ## Supported Environment
-esdoc2 supports Node.js(v6 or later)
+esdoc2 supports Node.js (v6 or later)
 
 ## Import Path In Documentation
 esdoc2 displays the import path of class/function into the document.<br/>

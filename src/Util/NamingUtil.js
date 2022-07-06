@@ -7,7 +7,7 @@ const filePathMap = {};
  */
 export default class NamingUtil {
   /**
-   * naming with file path.
+   * Naming with file path.
    * @param {string} filePath - target file path.
    * @returns {string} name
    */

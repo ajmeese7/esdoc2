@@ -1,7 +1,7 @@
 import fs from "fs-extra";
 
 /**
- * logger for invalid code which can not be parsed with esdoc2.
+ * Logger for invalid code which can not be parsed with esdoc2.
  */
 class InvalidCodeLogger {
   constructor() {
@@ -9,7 +9,7 @@ class InvalidCodeLogger {
   }
 
   /**
-   * show log.
+   * Show log.
    * @param {string} filePath - invalid code in this file.
    * @param {ASTNode} [node] - fail parsing node.
    */
@@ -39,11 +39,11 @@ class InvalidCodeLogger {
     console.log(targetLines.join("\n"));
     console.log("[0m");
 
-    this._logs.push({filePath: filePath, log: [start, end]});
+    this._logs.push({ filePath: filePath, log: [start, end] });
   }
 
   /**
-   * show error log.
+   * Show error log.
    * @param {Error} error - target error.
    */
   showError(error) {
@@ -53,7 +53,7 @@ class InvalidCodeLogger {
   }
 
   /**
-   * show log.
+   * Show log.
    * @param {string} filePath - invalid code in this file.
    * @param {Error} error - error object.
    */
@@ -70,11 +70,11 @@ class InvalidCodeLogger {
     console.log(filePath);
     console.log(`${targetLines.join("\n")}[0m`);
 
-    this._logs.push({filePath: filePath, log: [start, end]});
+    this._logs.push({ filePath: filePath, log: [start, end] });
   }
 }
 
 /**
- * singleton for {@link InvalidCodeLogger}
+ * Singleton for {@link InvalidCodeLogger}
  */
 export default new InvalidCodeLogger();

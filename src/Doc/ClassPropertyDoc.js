@@ -6,7 +6,7 @@ import MethodDoc from "./MethodDoc.js";
  */
 export default class ClassPropertyDoc extends AbstractDoc {
   /**
-   * apply own tag.
+   * Apply own tag.
    * @private
    */
   _apply() {
@@ -17,19 +17,19 @@ export default class ClassPropertyDoc extends AbstractDoc {
     Reflect.deleteProperty(this._value, "importStyle");
   }
 
-  /** specify ``member`` to kind. */
+  /** Specify ``member`` to kind. */
   _$kind() {
     super._$kind();
     this._value.kind = "member";
   }
 
-  /** take out self name from self node */
+  /** Rake out self name from self node */
   _$name() {
     super._$name();
     this._value.name = this._node.key.name;
   }
 
-  /** borrow {@link MethodDoc#@_memberof} */
+  /** Borrow {@link MethodDoc#@_memberof} */
   _$memberof() {
     Reflect.apply(MethodDoc.prototype._$memberof, this, []);
   }

@@ -6,7 +6,7 @@ import babelGenerator from "babel-generator";
  */
 export default class MethodDoc extends AbstractDoc {
   /**
-   * apply own tag.
+   * Apply own tag.
    * @private
    */
   _apply() {
@@ -17,13 +17,13 @@ export default class MethodDoc extends AbstractDoc {
     Reflect.deleteProperty(this._value, "importStyle");
   }
 
-  /** use kind property of self node. */
+  /** Use kind property of self node. */
   _$kind() {
     super._$kind();
     this._value.kind = this._node.kind;
   }
 
-  /** take out self name from self node */
+  /** Take out self name from self node */
   _$name() {
     super._$name();
 
@@ -35,7 +35,7 @@ export default class MethodDoc extends AbstractDoc {
     }
   }
 
-  /** take out memberof from parent class node */
+  /** Take out memberof from parent class node */
   _$memberof() {
     super._$memberof();
 
@@ -51,7 +51,7 @@ export default class MethodDoc extends AbstractDoc {
     }
   }
 
-  /** use generator property of self node. */
+  /** Use generator property of self node. */
   _$generator() {
     super._$generator();
 
@@ -59,7 +59,7 @@ export default class MethodDoc extends AbstractDoc {
   }
 
   /**
-   * use async property of self node.
+   * Use async property of self node.
    */
   _$async() {
     super._$async();

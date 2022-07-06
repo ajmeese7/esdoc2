@@ -11,7 +11,7 @@ import babelGenerator from "babel-generator";
  */
 export default class AbstractDoc {
   /**
-   * create instance.
+   * Create instance.
    * @param {AST} ast - this is AST that contains this doc.
    * @param {ASTNode} node - this is self node.
    * @param {PathResolver} pathResolver - this is file path resolver that contains this doc.
@@ -37,7 +37,7 @@ export default class AbstractDoc {
   }
 
   /**
-   * apply doc comment.
+   * Apply doc comment.
    * @protected
    */
   _apply() {
@@ -82,57 +82,57 @@ export default class AbstractDoc {
   }
 
   /**
-   * decide `kind`.
+   * Decide `kind`.
    * @abstract
    */
   _$kind() {}
 
   /** for @_variation */
   /**
-   * decide `variation`.
+   * Decide `variation`.
    * @todo implements `@variation`.
    * @abstract
    */
   _$variation() {}
 
   /**
-   * decide `name`
+   * Decide `name`
    * @abstract
    */
   _$name() {}
 
   /**
-   * decide `memberof`.
+   * Decide `memberof`.
    * @abstract
    */
   _$memberof() {}
 
   /**
-   * decide `member`.
+   * Decide `member`.
    * @abstract
    */
   _$member() {}
 
   /**
-   * decide `content`.
+   * Decide `content`.
    * @abstract
    */
   _$content() {}
 
   /**
-   * decide `generator`.
+   * Decide `generator`.
    * @abstract
    */
   _$generator() {}
 
   /**
-   * decide `async`.
+   * Decide `async`.
    * @abstract
    */
   _$async() {}
 
   /**
-   * decide `static`.
+   * Decide `static`.
    */
   _$static() {
     if ("static" in this._node) {
@@ -143,7 +143,7 @@ export default class AbstractDoc {
   }
 
   /**
-   * decide `longname`.
+   * Decide `longname`.
    */
   _$longname() {
     const memberof = this._value.memberof;
@@ -157,7 +157,7 @@ export default class AbstractDoc {
   }
 
   /**
-   * decide `access`.
+   * Decide `access`.
    * process also @public, @private and @protected.
    */
   _$access() {
@@ -196,7 +196,7 @@ export default class AbstractDoc {
   _$private() {}
 
   /**
-   * decide `export`.
+   * Decide `export`.
    */
   _$export() {
     let parent = this._node.parent;
@@ -216,14 +216,14 @@ export default class AbstractDoc {
   }
 
   /**
-   * decide `importPath`.
+   * Decide `importPath`.
    */
   _$importPath() {
     this._value.importPath = this._pathResolver.importPath;
   }
 
   /**
-   * decide `importStyle`.
+   * Decide `importStyle`.
    */
   _$importStyle() {
     if (this._node.__PseudoExport__) {
@@ -248,14 +248,14 @@ export default class AbstractDoc {
   }
 
   /**
-   * decide `description`.
+   * Decide `description`.
    */
   _$desc() {
     this._value.description = this._findTagValue(["@desc"]);
   }
 
   /**
-   * decide `examples`.
+   * Decide `examples`.
    */
   _$example() {
     const tags = this._findAll(["@example"]);
@@ -269,7 +269,7 @@ export default class AbstractDoc {
   }
 
   /**
-   * decide `see`.
+   * Decide `see`.
    */
   _$see() {
     const tags = this._findAll(["@see"]);
@@ -283,7 +283,7 @@ export default class AbstractDoc {
   }
 
   /**
-   * decide `lineNumber`.
+   * Decide `lineNumber`.
    */
   _$lineNumber() {
     const tag = this._find(["@lineNumber"]);
@@ -298,7 +298,7 @@ export default class AbstractDoc {
   }
 
   /**
-   * decide `deprecated`.
+   * Decide `deprecated`.
    */
   _$deprecated() {
     const tag = this._find(["@deprecated"]);
@@ -312,7 +312,7 @@ export default class AbstractDoc {
   }
 
   /**
-   * decide `experimental`.
+   * Decide `experimental`.
    */
   _$experimental() {
     const tag = this._find(["@experimental"]);
@@ -326,7 +326,7 @@ export default class AbstractDoc {
   }
 
   /**
-   * decide `since`.
+   * Decide `since`.
    */
   _$since() {
     const tag = this._find(["@since"]);
@@ -336,7 +336,7 @@ export default class AbstractDoc {
   }
 
   /**
-   * decide `version`.
+   * Decide `version`.
    */
   _$version() {
     const tag = this._find(["@version"]);
@@ -346,7 +346,7 @@ export default class AbstractDoc {
   }
 
   /**
-   * decide `todo`.
+   * Decide `todo`.
    */
   _$todo() {
     const tags = this._findAll(["@todo"]);
@@ -359,7 +359,7 @@ export default class AbstractDoc {
   }
 
   /**
-   * decide `ignore`.
+   * Decide `ignore`.
    */
   _$ignore() {
     const tag = this._find(["@ignore"]);
@@ -369,7 +369,7 @@ export default class AbstractDoc {
   }
 
   /**
-   * decide `pseudoExport`.
+   * Decide `pseudoExport`.
    */
   _$pseudoExport() {
     if (this._node.__PseudoExport__) {
@@ -378,7 +378,7 @@ export default class AbstractDoc {
   }
 
   /**
-   * decide `undocument` with internal tag.
+   * Decide `undocument` with internal tag.
    */
   _$undocument() {
     const tag = this._find(["@undocument"]);
@@ -388,7 +388,7 @@ export default class AbstractDoc {
   }
 
   /**
-   * decide `unknown`.
+   * Decide `unknown`.
    */
   _$unknown() {
     for (const tag of this._commentTags) {
@@ -401,7 +401,7 @@ export default class AbstractDoc {
   }
 
   /**
-   * decide `param`.
+   * Decide `param`.
    */
   _$param() {
     const values = this._findAllTagValues(["@param"]);
@@ -420,7 +420,7 @@ export default class AbstractDoc {
   }
 
   /**
-   * decide `return`.
+   * Decide `return`.
    */
   _$return() {
     const value = this._findTagValue(["@return", "@returns"]);
@@ -432,7 +432,7 @@ export default class AbstractDoc {
   }
 
   /**
-   * decide `property`.
+   * Decide `property`.
    */
   _$property() {
     const values = this._findAllTagValues(["@property"]);
@@ -447,7 +447,7 @@ export default class AbstractDoc {
   }
 
   /**
-   * decide `type`.
+   * Decide `type`.
    */
   _$type() {
     const value = this._findTagValue(["@type"]);
@@ -459,7 +459,7 @@ export default class AbstractDoc {
   }
 
   /**
-   * decide `abstract`.
+   * Decide `abstract`.
    */
   _$abstract() {
     const tag = this._find(["@abstract"]);
@@ -469,7 +469,7 @@ export default class AbstractDoc {
   }
 
   /**
-   * decide `override`.
+   * Decide `override`.
    */
   _$override() {
     const tag = this._find(["@override"]);
@@ -479,7 +479,7 @@ export default class AbstractDoc {
   }
 
   /**
-   * decide `throws`.
+   * Decide `throws`.
    */
   _$throws() {
     const values = this._findAllTagValues(["@throws"]);
@@ -497,7 +497,7 @@ export default class AbstractDoc {
   }
 
   /**
-   * decide `emits`.
+   * Decide `emits`.
    */
   _$emits() {
     const values = this._findAllTagValues(["@emits"]);
@@ -515,7 +515,7 @@ export default class AbstractDoc {
   }
 
   /**
-   * decide `listens`.
+   * Decide `listens`.
    */
   _$listens() {
     const values = this._findAllTagValues(["@listens"]);
@@ -533,7 +533,7 @@ export default class AbstractDoc {
   }
 
   /**
-   * decide `decorator`.
+   * Decide `decorator`.
    */
   _$decorator() {
     if (!this._node.decorators) return;

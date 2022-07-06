@@ -6,7 +6,7 @@ import ParamParser from "../Parser/ParamParser.js";
  */
 export default class ExternalDoc extends AbstractDoc {
   /**
-   * apply own tag.
+   * Apply own tag.
    * @private
    */
   _apply() {
@@ -17,13 +17,13 @@ export default class ExternalDoc extends AbstractDoc {
     Reflect.deleteProperty(this._value, "importStyle");
   }
 
-  /** specify ``external`` to kind. */
+  /** Specify ``external`` to kind. */
   _$kind() {
     super._$kind();
     this._value.kind = "external";
   }
 
-  /** take out self name from tag */
+  /** Take out self name from tag */
   _$name() {
     const value = this._findTagValue(["@external"]);
     if (!value) {
@@ -48,20 +48,20 @@ export default class ExternalDoc extends AbstractDoc {
     this._value.name = name;
   }
 
-  /** take out self memberof from file path. */
+  /** Take out self memberof from file path. */
   _$memberof() {
     super._$memberof();
     this._value.memberof = this._pathResolver.filePath;
   }
 
-  /** specify name to longname */
+  /** Specify name to longname */
   _$longname() {
     super._$longname();
     if (this._value.longname) return;
     this._value.longname = this._value.name;
   }
 
-  /** avoid unknown tag */
+  /** Avoid unknown tag */
   _$external() {}
 }
 

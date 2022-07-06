@@ -7,7 +7,7 @@ import babelGenerator from "babel-generator";
  */
 export default class MemberDoc extends AbstractDoc {
   /**
-   * apply own tag.
+   * Apply own tag.
    * @private
    */
   _apply() {
@@ -18,13 +18,13 @@ export default class MemberDoc extends AbstractDoc {
     Reflect.deleteProperty(this._value, "importStyle");
   }
 
-  /** specify ``member`` to kind. */
+  /** Specify ``member`` to kind. */
   _$kind() {
     super._$kind();
     this._value.kind = "member";
   }
 
-  /** use static property in class */
+  /** Use static property in class */
   _$static() {
     let parent = this._node.parent;
     while (parent) {
@@ -36,7 +36,7 @@ export default class MemberDoc extends AbstractDoc {
     }
   }
 
-  /** take out self name from self node */
+  /** Take out self name from self node */
   _$name() {
     let name;
     if (this._node.left.computed) {
@@ -48,7 +48,7 @@ export default class MemberDoc extends AbstractDoc {
     this._value.name = name;
   }
 
-  /** borrow {@link MethodDoc#@_memberof} */
+  /** Borrow {@link MethodDoc#@_memberof} */
   _$memberof() {
     Reflect.apply(MethodDoc.prototype._$memberof, this, []);
   }

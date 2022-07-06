@@ -3,7 +3,7 @@ import assert from "assert";
 import os from "os";
 
 /**
- * file path resolver.
+ * Dile path resolver.
  * @example
  * let pathResolver = new PathResolver('./src', 'foo/bar.js', 'foo-bar', 'foo/bar.js');
  * pathResolver.importPath; // 'foo-bar'
@@ -12,7 +12,7 @@ import os from "os";
  */
 export default class PathResolver {
   /**
-   * create instance.
+   * Create instance.
    * @param {string} inDirPath - root directory path.
    * @param {string} filePath - relative file path from root directory path.
    * @param {string} [packageName] - npm package name.
@@ -38,7 +38,7 @@ export default class PathResolver {
   }
 
   /**
-   * import path that is considered package name, main file and path prefix.
+   * Import path that is considered package name, main file and path prefix.
    * @type {string}
    */
   get importPath() {
@@ -59,7 +59,7 @@ export default class PathResolver {
   }
 
   /**
-   * file full path.
+   * File full path.
    * @type {string}
    */
   get fileFullPath() {
@@ -67,7 +67,7 @@ export default class PathResolver {
   }
 
   /**
-   * file path that is relative path on root dir.
+   * File path that is relative path on root directory.
    * @type {string}
    */
   get filePath() {
@@ -76,7 +76,7 @@ export default class PathResolver {
   }
 
   /**
-   * resolve file path on this file.
+   * Resolve file path on this file.
    * @param {string} relativePath - relative path on this file.
    */
   resolve(relativePath) {
@@ -87,8 +87,8 @@ export default class PathResolver {
   }
 
   /**
-   * convert 'back slash' to 'slash'.
-   * path separator is 'back slash' if platform is windows.
+   * Convert 'back slash' to 'slash'.
+   * Path separator is 'back slash' if platform is Windows.
    * @param {string} filePath - target file path.
    * @returns {string} converted path.
    * @private

@@ -10,7 +10,7 @@ import * as babylon from "babylon";
  */
 export default class ESParser {
   /**
-   * parse ECMAScript source code.
+   * Parse ECMAScript source code.
    * @param {string} filePath - source code file path.
    * @returns {AST} AST of source code.
    */
@@ -27,7 +27,6 @@ export default class ESParser {
     ({parser, parserOption} = Plugin.onHandleCodeParser(parser, parserOption, filePath, code));
 
     let ast = parser(code);
-
     ast = Plugin.onHandleAST(ast, filePath, code);
 
     return ast;

@@ -5,7 +5,7 @@ import {resolve} from "path";
  */
 export default class NPMUtil {
   /**
-   * find esdoc2 package.json object.
+   * Dind esdoc2 package.json object.
    * @returns {Object} package.json object.
    */
   static findPackage() {

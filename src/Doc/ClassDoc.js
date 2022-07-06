@@ -8,7 +8,7 @@ import NamingUtil from "../Util/NamingUtil.js";
  */
 export default class ClassDoc extends AbstractDoc {
   /**
-   * apply own tag.
+   * Apply own tag.
    * @private
    */
   _apply() {
@@ -19,13 +19,13 @@ export default class ClassDoc extends AbstractDoc {
     this._$implements();
   }
 
-  /** specify ``class`` to kind. */
+  /** Specify ``class`` to kind. */
   _$kind() {
     super._$kind();
     this._value.kind = "class";
   }
 
-  /** take out self name from self node */
+  /** Take out self name from self node */
   _$name() {
     super._$name();
 
@@ -36,7 +36,7 @@ export default class ClassDoc extends AbstractDoc {
     }
   }
 
-  /** take out self memberof from file path. */
+  /** Take out self memberof from file path. */
   _$memberof() {
     super._$memberof();
     this._value.memberof = this._pathResolver.filePath;
@@ -52,7 +52,7 @@ export default class ClassDoc extends AbstractDoc {
     }
   }
 
-  /** for @extends, does not need to use this tag. */
+  /** For @extends, does not need to use this tag. */
   _$extends() {
     const values = this._findAllTagValues(["@extends", "@extend"]);
     if (values) {
@@ -107,7 +107,7 @@ export default class ClassDoc extends AbstractDoc {
     }
   }
 
-  /** for @implements */
+  /** For @implements */
   _$implements() {
     const values = this._findAllTagValues(["@implements", "@implement"]);
     if (!values) return;
@@ -120,7 +120,7 @@ export default class ClassDoc extends AbstractDoc {
   }
 
   /**
-   * read selection text in file.
+   * Read selection text in file.
    * @param {string} filePath - target file full path.
    * @param {number} line - line number (one origin).
    * @param {number} startColumn - start column number (one origin).

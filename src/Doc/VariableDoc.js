@@ -4,13 +4,13 @@ import AbstractDoc from "./AbstractDoc.js";
  * Doc Class from Variable Declaration AST node.
  */
 export default class VariableDoc extends AbstractDoc {
-  /** specify ``variable`` to kind. */
+  /** Specify ``variable`` to kind. */
   _$kind() {
     super._$kind();
     this._value.kind = "variable";
   }
 
-  /** set name by using self node. */
+  /** Set name by using self node. */
   _$name() {
     super._$name();
 
@@ -34,7 +34,7 @@ export default class VariableDoc extends AbstractDoc {
     }
   }
 
-  /** set memberof by using file path. */
+  /** Set memberof by using file path. */
   _$memberof() {
     super._$memberof();
     this._value.memberof = this._pathResolver.filePath;

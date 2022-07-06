@@ -5,7 +5,7 @@ import assert from "assert";
  */
 export default class ParamParser {
   /**
-   * parse param value.
+   * Parse parameter value.
    * @param {string} value - param value.
    * @param {boolean} [type=true] if true, contain param type.
    * @param {boolean} [name=true] if true, contain param name.
@@ -80,7 +80,7 @@ export default class ParamParser {
   }
 
   /**
-   * parse param text and build formatted result.
+   * Parse parameter text and build formatted result.
    * @param {string} typeText - param type text.
    * @param {string} [paramName] - param name.
    * @param {string} [paramDesc] - param description.
@@ -141,7 +141,7 @@ export default class ParamParser {
     }
 
     if (paramName) {
-      // check optional
+      // Check optional
       if (paramName[0] === "[") {
         result.optional = true;
         paramName = paramName.replace(/^[\[]/, "").replace(/[\]]$/, "");
@@ -149,7 +149,7 @@ export default class ParamParser {
         result.optional = false;
       }
 
-      // check default value
+      // Check default value
       const pair = paramName.split("=");
       if (pair.length === 2) {
         result.defaultValue = pair[1];
