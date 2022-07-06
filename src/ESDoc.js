@@ -7,7 +7,7 @@ import PathResolver from "./Util/PathResolver.js";
 import DocFactory from "./Factory/DocFactory.js";
 import InvalidCodeLogger from "./Util/InvalidCodeLogger.js";
 import Plugin from "./Plugin/Plugin.js";
-import {Transform} from "stream";
+import { Transform } from "stream";
 import json from "big-json";
 import mkdirp from "mkdirp";
 import log from "npmlog";
@@ -252,7 +252,7 @@ export default class ESDoc {
       }
     });
 
-    return {results: factory.results, ast: ast};
+    return { results: factory.results, ast: ast };
   }
 
   /**

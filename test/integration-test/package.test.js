@@ -1,8 +1,8 @@
 import assert from "assert";
-import {find} from "./util";
+import { find } from "./util";
 
 describe("test/package.json:", () => {
-  it("has package json", () => {
+  it("Has package json", () => {
     const doc = find("longname", /\/package\.json$/);
     const obj = JSON.parse(doc.content);
     assert.equal(obj.name, "esdoc2-test");

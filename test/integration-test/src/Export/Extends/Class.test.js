@@ -1,5 +1,5 @@
 import assert from "assert";
-import {find} from "../../../util";
+import { find } from "../../../util";
 
 describe("test/Export/Extends/class", () => {
   it("Is not exported that inner class", () => {

@@ -1,9 +1,14 @@
 #!/usr/bin/env node
+
 require("babel-core/register")({
   plugins: [
     "transform-es2015-modules-commonjs"
   ],
-  env: {coverage: {plugins: ["istanbul"]}}
+  env: {
+    coverage: {
+      plugins: ["istanbul"]
+    }
+  }
 });
 
 const Mocha = require("mocha");

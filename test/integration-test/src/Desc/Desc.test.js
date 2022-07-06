@@ -1,5 +1,5 @@
 import assert from "assert";
-import {find} from "../../util";
+import { find } from "../../util";
 
 describe("test/Desc/Desc:", () => {
   it("Has class description", () => {

@@ -1,5 +1,5 @@
 import assert from "assert";
-import {find} from "../../../util";
+import { find } from "../../../util";
 
 describe("test/Export/NewExpression/WithOriginalExport", () => {
   it("Is exported", () => {

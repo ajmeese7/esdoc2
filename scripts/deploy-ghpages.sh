@@ -4,8 +4,6 @@
 # Based on https://github.com/eldarlabs/ghpages-deploy-script/blob/master/scripts/deploy-ghpages.sh
 # Used with their MIT license https://github.com/eldarlabs/ghpages-deploy-script/blob/master/LICENSE
 
-# show where we are on the machine
-pwd
 remote=$(git config remote.origin.url)
 # make a directory to put the gp-pages branch
 mkdir -p gh-pages-branch

@@ -9,8 +9,14 @@
     {
       "name": "esdoc2-standard-plugin",
       "option": {
-        "brand": {"title": "esdoc2", "logo": "./manual/asset/image/logo.png"},
-        "test": {"source": "./test", "includes": ["\\.test\\.js$"]},
+        "brand": {
+          "title": "esdoc2",
+          "logo": "./manual/asset/image/logo.png"
+        },
+        "test": {
+          "source": "./test",
+          "includes": ["\\.test\\.js$"]
+        },
         "manual": {
           "globalIndex": "true",
           "index": "./README.md",
@@ -36,8 +42,6 @@
         }]
       }
     },
-    {
-      "name": "esdoc2-publish-html-plugin"
-    }
+    { "name": "esdoc2-publish-html-plugin" }
   ]
 }

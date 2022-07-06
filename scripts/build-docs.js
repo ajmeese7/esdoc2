@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-const sh = require("./sh");
 
+const sh = require("./sh");
 sh.rm("./out/docs");
 sh.mkdir("./out/docs");
 
