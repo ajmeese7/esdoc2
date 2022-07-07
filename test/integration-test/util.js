@@ -24,4 +24,3 @@ export function find(key, ...values) {
 export function file(filePath) {
   return fs.readFileSync(filePath).toString();
 }
-

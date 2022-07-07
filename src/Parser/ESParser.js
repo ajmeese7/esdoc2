@@ -16,6 +16,7 @@ export default class ESParser {
    */
   static parse(filePath) {
     let code = fs.readFileSync(filePath, {encode: "utf8"}).toString();
+    Plugin.init();
     code = Plugin.onHandleCode(code, filePath);
     if (code.charAt(0) === "#") code = code.replace(/^#!/, "//");
 

@@ -3,7 +3,7 @@ import assert from "assert";
 import os from "os";
 
 /**
- * Dile path resolver.
+ * File path resolver.
  * @example
  * let pathResolver = new PathResolver('./src', 'foo/bar.js', 'foo-bar', 'foo/bar.js');
  * pathResolver.importPath; // 'foo-bar'

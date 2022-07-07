@@ -39,6 +39,10 @@ open ./docs/index.html
 ## Documentation
 Please visit [esdoc2.org](http://esdoc2.org) to see more documentation.
 
+## Development
+1. `npm run build`
+2. `./out/src/ESDocCLI.js`
+
 ## Acknolwedgements
 
 - Ryo Maruyama, author of ESDoc

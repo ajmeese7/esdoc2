@@ -1,5 +1,5 @@
 import assert from "assert";
-import {find, file} from "./util";
+import { find, file } from "./util";
 
 describe("test/README.md", () => {
   it("has README", () => {
