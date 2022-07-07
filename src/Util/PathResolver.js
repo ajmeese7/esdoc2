@@ -5,10 +5,10 @@ import os from "os";
 /**
  * File path resolver.
  * @example
- * let pathResolver = new PathResolver('./src', 'foo/bar.js', 'foo-bar', 'foo/bar.js');
- * pathResolver.importPath; // 'foo-bar'
- * pathResolver.filePath; // 'src/foo/bar.js'
- * pathResolver.resolve('./baz.js'); // 'src/foo/baz.js'
+ * let pathResolver = new PathResolver("./src", "foo/bar.js", "foo-bar", "foo/bar.js");
+ * pathResolver.importPath; // "foo-bar"
+ * pathResolver.filePath; // "src/foo/bar.js"
+ * pathResolver.resolve("./baz.js"); // "src/foo/baz.js"
  */
 export default class PathResolver {
   /**
@@ -78,17 +78,22 @@ export default class PathResolver {
   /**
    * Resolve file path on this file.
    * @param {string} relativePath - relative path on this file.
+   * @param {boolean} relative - relative path or not.
+   * @returns {string} resolved and converted path.
    */
-  resolve(relativePath) {
+  resolve(relativePath, relative = true) {
     const selfDirPath = path.dirname(this._filePath);
-    const resolvedPath = path.resolve(selfDirPath, relativePath);
-    const resolvedRelativePath = path.relative(path.dirname(this._inDirPath), resolvedPath);
-    return this._slash(resolvedRelativePath);
+    let resolvedPath = path.resolve(selfDirPath, relativePath);
+    if (relative) {
+      resolvedPath = path.relative(path.dirname(this._inDirPath), resolvedPath);
+    }
+
+    return this._slash(resolvedPath);
   }
 
   /**
-   * Convert 'back slash' to 'slash'.
-   * Path separator is 'back slash' if platform is Windows.
+   * Convert "back slash" to "slash".
+   * Path separator is "back slash" if platform is Windows.
    * @param {string} filePath - target file path.
    * @returns {string} converted path.
    * @private

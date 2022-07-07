@@ -16,6 +16,7 @@ export default class FunctionDoc extends AbstractDoc {
   _$name() {
     super._$name();
 
+    if (this._value.name) return;
     if (this._node.id) {
       if (this._node.id.type === "MemberExpression") {
         // e.g. foo[bar.baz] = function bal(){}

@@ -13,6 +13,7 @@ export default class VariableDoc extends AbstractDoc {
   /** Set name by using self node. */
   _$name() {
     super._$name();
+    if (this._value.name) return;
 
     const type = this._node.declarations[0].id.type;
     switch (type) {

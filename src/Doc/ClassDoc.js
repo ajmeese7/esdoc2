@@ -29,10 +29,12 @@ export default class ClassDoc extends AbstractDoc {
   _$name() {
     super._$name();
 
-    if (this._node.id) {
-      this._value.name = this._node.id.name;
-    } else {
-      this._value.name = NamingUtil.filePathToName(this._pathResolver.filePath);
+    if (!this._value.name) {
+      if (this._node.id) {
+        this._value.name = this._node.id.name;
+      } else {
+        this._value.name = NamingUtil.filePathToName(this._pathResolver.filePath);
+      }
     }
   }
 

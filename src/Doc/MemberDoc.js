@@ -38,6 +38,9 @@ export default class MemberDoc extends AbstractDoc {
 
   /** Take out self name from self node */
   _$name() {
+    super._$name();
+    if (this._value.name) return;
+
     let name;
     if (this._node.left.computed) {
       const expression = babelGenerator(this._node.left.property).code.replace(/^this/, "");

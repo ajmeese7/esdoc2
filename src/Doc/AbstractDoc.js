@@ -4,6 +4,7 @@ import ASTUtil from "../Util/ASTUtil.js";
 import InvalidCodeLogger from "../Util/InvalidCodeLogger.js";
 import ASTNodeContainer from "../Util/ASTNodeContainer.js";
 import babelGenerator from "babel-generator";
+import { name } from "../Factory/DocFactory";
 
 /**
  * Abstract Doc Class.
@@ -97,9 +98,12 @@ export default class AbstractDoc {
 
   /**
    * Decide `name`
-   * @abstract
    */
-  _$name() {}
+  _$name() {
+    if (this._node[name]) {
+      this._value.name = this._node[name];
+    }
+  }
 
   /**
    * Decide `memberof`.
@@ -505,10 +509,16 @@ export default class AbstractDoc {
 
     this._value.emits = [];
     for (const value of values) {
-      const {typeText, paramName, paramDesc} = ParamParser.parseParamValue(value, true, false, true);
+      const { typeText, paramName, paramDesc } = ParamParser.parseParamValue(value);
+      if (!typeText || !paramName) {
+        InvalidCodeLogger.show(this._pathResolver.fileFullPath, this._node);
+        continue;
+      }
+
       const result = ParamParser.parseParam(typeText, paramName, paramDesc);
       this._value.emits.push({
         types: result.types,
+        name: result.name,
         description: result.description
       });
     }
@@ -523,10 +533,11 @@ export default class AbstractDoc {
 
     this._value.listens = [];
     for (const value of values) {
-      const {typeText, paramName, paramDesc} = ParamParser.parseParamValue(value, true, false, true);
+      const { typeText, paramName, paramDesc } = ParamParser.parseParamValue(value);
       const result = ParamParser.parseParam(typeText, paramName, paramDesc);
       this._value.listens.push({
         types: result.types,
+        name: result.name,
         description: result.description
       });
     }

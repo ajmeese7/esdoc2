@@ -1,4 +1,5 @@
 import babelTraverse from "babel-traverse";
+import { name } from "../Factory/DocFactory";
 
 /**
  * Utility for AST.
@@ -18,7 +19,7 @@ export default class ASTUtil {
   }
 
   /**
-   * Rraverse AST nodes.
+   * Traverse AST nodes.
    * @param {AST} ast - target AST.
    * @param {function(node: Object, parent: Object, path: Object)} callback - this is called with each node.
    */
@@ -33,7 +34,7 @@ export default class ASTUtil {
 
   /**
    * Find file path in import declaration by name.
-   * e.g. can find ``./foo/bar.js`` from ``import Bar from './foo/bar.js'`` by ``Bar``.
+   * e.g. can find `./foo/bar.js` from `import Bar from "./foo/bar.js"` by `Bar`.
    * @param {AST} ast - target AST.
    * @param {string} name - identifier name.
    * @returns {string|null} file path.
@@ -145,6 +146,33 @@ export default class ASTUtil {
   }
 
   /**
+   * Find ImportDeclaration node.
+   * @param {string} name - variable name.
+   * @param {AST} ast - find in this ast.
+   * @returns {ASTNode|null} found ast node.
+   */
+   static findImportDeclarationNode(name, ast) {
+    if (!name) return null;
+
+    for (const node of ast.program.body) {
+      if (node.type === "ImportDeclaration" && node.specifiers.some(spec => spec.local.name === name)) return node;
+    }
+
+    return null;
+  }
+
+  static findExportInAst(n, ast) {
+    for (const exportNode of ast.program.body) {
+      if (exportNode.type === "ExportNamedDeclaration" && exportNode.declaration && exportNode.declaration[name] === n) {
+        return exportNode;
+      } else if (exportNode.type === "ExportDefaultDeclaration" && n === "default") {
+        return exportNode;
+      }
+    }
+    return null;
+  }
+
+  /**
    * Create VariableDeclaration node which has NewExpression.
    * @param {string} name - variable name.
    * @param {string} className - class name.
@@ -183,6 +211,6 @@ export default class ASTUtil {
   //       object = object.object;
   //     }
   //   }
-  //   return names.reverse().join('.');
+  //   return names.reverse().join(".");
   // }
 }

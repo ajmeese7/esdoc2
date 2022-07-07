@@ -25,6 +25,9 @@ export default class ExternalDoc extends AbstractDoc {
 
   /** Take out self name from tag */
   _$name() {
+    super._$name();
+    if (this._value.name) return;
+
     const value = this._findTagValue(["@external"]);
     if (!value) {
       log.warn("can not resolve name.");

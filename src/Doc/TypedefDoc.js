@@ -28,6 +28,9 @@ export default class TypedefDoc extends AbstractDoc {
 
   /** Set name by using tag. */
   _$name() {
+    super._$name();
+    if (this._value.name) return;
+
     const tags = this._findAll(["@typedef"]);
     if (!tags) {
       log.warn("can not resolve name.");

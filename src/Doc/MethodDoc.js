@@ -26,6 +26,7 @@ export default class MethodDoc extends AbstractDoc {
   /** Take out self name from self node */
   _$name() {
     super._$name();
+    if (this._value.name) return;
 
     if (this._node.computed) {
       const expression = babelGenerator(this._node.key).code;

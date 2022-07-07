@@ -2,16 +2,23 @@
   "source": "./src",
   "destination": "./out/docs",
   "excludes": ["Publisher/Builder/template/"],
-  "debug": true,
+  "debug": false,
   "index": "./README.md",
   "package": "./package.json",
   "plugins": [
     {
       "name": "esdoc2-standard-plugin",
       "option": {
+        "lint": {"enable": true},
+        "coverage": {"enable": true},
+        "accessor": {"access": ["public", "protected", "private"], "autoPrivate": true},
+        "undocumentIdentifier": {"enable": true},
+        "unexportedIdentifier": {"enable": false},
+        "typeInference": {"enable": true},
         "brand": {
           "title": "esdoc2",
-          "logo": "./manual/asset/image/logo.png"
+          "logo": "./manual/asset/image/logo.png",
+          "repository": "https://github.com/ajmeese7/esdoc2"
         },
         "test": {
           "source": "./test",
@@ -41,7 +48,6 @@
           "to": "out/src/"
         }]
       }
-    },
-    { "name": "esdoc2-publish-html-plugin" }
+    }
   ]
 }
